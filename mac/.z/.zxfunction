@@ -1,0 +1,271 @@
+#!/bin/bash
+# ============================================================
+# FUNCIONES PERSONALIZADAS DE UTILIDAD PARA TERMINAL
+# ============================================================
+
+
+# ------------------------------------------------------------
+# xbrave → Abre Brave con URL
+# ------------------------------------------------------------
+function xbrave {
+  if [ $# -eq 0 ]; then
+    echo "Uso: xbrave <url>"
+    return 0
+  fi
+  open -a "Brave Browser" "$1"
+}
+
+# Lista archivos por extensión
+# Uso: xfindl <extension>
+# Ejemplo: xfindl txt
+function xfindl {
+  if [ $# -eq 0 ]; then
+    echo "Uso: xfindl <extension>"
+    return 1
+  fi
+  find . -type f -name "*.$1"
+}
+
+# Elimina archivos por extensión
+# Uso: xfind <extension>
+# Ejemplo: xfind log
+# ⚠️ Elimina los archivos encontrados
+function xfind {
+  if [ $# -eq 0 ]; then
+    echo "Uso: xfind <extension>"
+    return 1
+  fi
+  find . -type f -name "*.$1" -delete
+}
+  
+# ------------------------------------------------------------
+# xk → Mata procesos por puerto (macOS seguro)
+# ------------------------------------------------------------
+function xk {
+
+  if [ -z "$1" ]; then
+    echo "Uso: xk <puerto>"
+    return 1
+  fi
+
+  local PUERTO="$1"
+
+  echo "🔎 Verificando puerto $PUERTO..."
+
+  if lsof -i :"$PUERTO" >/dev/null 2>&1; then
+    echo "🛑 Cerrando procesos en el puerto $PUERTO..."
+    lsof -ti :"$PUERTO" | xargs kill -9
+    echo "🚀 Puerto $PUERTO liberado."
+  else
+    echo "✅ El puerto $PUERTO está libre."
+  fi
+}
+
+
+# ------------------------------------------------------------
+# xfd2 → Buscar 2 patrones
+# ------------------------------------------------------------
+function xfd2 {
+  if [ $# -lt 2 ]; then
+    echo "Uso: xfd2 <patron1> <patron2>"
+    return 1
+  fi
+
+  grep -R -i -E "$1|$2" .
+}
+
+
+# ------------------------------------------------------------
+# xfd → Buscar archivos con fd
+# ------------------------------------------------------------
+function xfd {
+  if [ $# -eq 0 ]; then
+    echo "Uso: xfd <patron>"
+    return 1
+  fi
+
+  fd -i "$1"
+}
+
+
+# ------------------------------------------------------------
+# xk8 → Mata procesos puerto (default 8080)
+# ------------------------------------------------------------
+function xk8 {
+  local port=${1:-8080}
+  lsof -ti :"$port" | xargs kill -9
+}
+
+
+# ------------------------------------------------------------
+# xporta → Copia archivo al portapapeles
+# ------------------------------------------------------------
+function xporta {
+  if [ $# -eq 0 ]; then
+    echo "Uso: xporta <archivo>"
+    return 1
+  fi
+
+  pbcopy < "$1"
+}
+
+
+# ------------------------------------------------------------
+# gacp → git add + commit + push
+# ------------------------------------------------------------
+function gacp {
+  if [ $# -eq 0 ]; then
+    echo "Uso: gacp <mensaje>"
+    return 1
+  fi
+
+  clear
+  git add .
+  git commit -m "$1"
+  git push
+}
+
+
+# ------------------------------------------------------------
+# gicp → commit inicial
+# ------------------------------------------------------------
+function gicp {
+  clear
+  git add .
+  git commit -m "commit inicial"
+  git push
+}
+
+
+# ------------------------------------------------------------
+# xo → abre alias xvi
+# ------------------------------------------------------------
+function xo {
+  xvi
+}
+
+
+# ------------------------------------------------------------
+# xviz → abre .zshrc en editor
+# ------------------------------------------------------------
+function xviz {
+  subl "$HOME/.zshrc"
+}
+
+
+# ------------------------------------------------------------
+# chis → buscar en historial
+# ------------------------------------------------------------
+function chis {
+  history | grep --color "$1"
+}
+
+
+# ------------------------------------------------------------
+# xvia → abre alias personalizados
+# ------------------------------------------------------------
+function xvia {
+  subl "$HOME/.zxalias"
+}
+
+
+# ------------------------------------------------------------
+# xvif → abre funciones personalizadas
+# ------------------------------------------------------------
+function xvif {
+  subl "$HOME/.zxfunction"
+}
+
+
+# ------------------------------------------------------------
+# xshell2 → cambia a directorio shell2
+# ------------------------------------------------------------
+function xshell2 {
+  cd /usr/local/shell2/shell2 || return
+}
+
+
+# ------------------------------------------------------------
+# xgit → git status
+# ------------------------------------------------------------
+function xgit {
+  git status
+}
+
+
+# ------------------------------------------------------------
+# xfind → Buscar archivos por extensión con tamaño
+# ------------------------------------------------------------
+function xfind {
+  if [ $# -eq 0 ]; then
+    echo "Uso: xfind <extension>"
+    return 1
+  fi
+
+  find . -type f -name "*.$1" -exec wc -c {} \; 2>/dev/null | sort | more
+}
+
+
+# ------------------------------------------------------------
+# xsubl → Abrir archivo en Sublime
+# ------------------------------------------------------------
+function xsubl {
+  if [ $# -eq 0 ]; then
+    echo "Uso: xsubl <archivo_o_ruta>"
+    return 1
+  fi
+
+  subl -n "$1"
+}
+
+
+# ------------------------------------------------------------
+# xcode → Abrir en VSCode
+# ------------------------------------------------------------
+function xcode {
+  if [ $# -eq 0 ]; then
+    echo "Uso: xcode <archivo_o_carpeta>"
+    return 1
+  fi
+
+  code "$1"
+}
+
+
+# ------------------------------------------------------------
+# xgrep → Buscar texto en .zshrc
+# ------------------------------------------------------------
+function xgrep {
+  if [ $# -eq 0 ]; then
+    echo "Uso: xgrep <texto>"
+    return 1
+  fi
+
+  grep "$1" "$HOME/.zshrc"
+}
+
+
+# ------------------------------------------------------------
+# xtar → Comprimir directorio actual
+# ------------------------------------------------------------
+function xtar {
+  if [ $# -eq 0 ]; then
+    echo "Uso: xtar <nombre_archivo>"
+    return 1
+  fi
+
+  tar -czvf "$1.tar.gz" .
+}
+
+
+# ------------------------------------------------------------
+# xchx → Dar permiso de ejecución a archivo
+# ------------------------------------------------------------
+function xchx {
+  if [ $# -eq 0 ]; then
+    echo "Uso: xchx <archivo>"
+    return 1
+  fi
+
+  chmod +x "$1"
+}

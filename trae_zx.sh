@@ -1,6 +1,10 @@
 echo "**** use Source..."
 echo "------------------------\n"
-cp -v ../.zxalias .
-cp -v ../.zxfunction .
-cp -v ../.zshrc .
+rsync -avh --progress ~/.zxalias /Users/carlosocando/para_git/
+rsync -avh --progress ~/.zxfunction /Users/carlosocando/para_git/
+rsync -avh --progress ~/.zshrc /Users/carlosocando/para_git/
+
 ll
+
+
+

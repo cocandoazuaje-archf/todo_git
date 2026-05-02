@@ -13,5 +13,6 @@ source ./trae_zx.sh
 # Copiar todo el contenido actual de forma recursiva y verbosa
 # -R : recursivo
 # -v : muestra cada archivo copiado
-cp -Rv * ~/para_git/
+rsync -avh --progress /Users/carlosocando/Documentos/ionix/Desarrollando/* ~/para_git/
 
+xgitall "Actualizando nuevo directorios con perfiles de usuario y datos .."
