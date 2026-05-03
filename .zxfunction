@@ -1289,21 +1289,21 @@ function xgitall {
   # --------------------------------------------------------
   # Validar parámetro obligatorio
   # --------------------------------------------------------
-  if [ -z "$1" ]; then
-    echo "======================================"
-    echo "USO:"
-    echo '  xgitall "mensaje del commit"'
-    echo ""
-    echo "Esta función ejecuta:"
-    echo "  git add ."
-    echo '  git commit -m "mensaje"'
-    echo "  git push"
-    echo "  git status"
-    echo "  git log -1"
-    echo "  git branch -vv"
-    echo "======================================"
-    return 1
-  fi
+  # if [ -z "$1" ]; then
+  #   echo "======================================"
+  #   echo "USO:"
+  #   echo '  xgitall "mensaje del commit"'
+  #   echo ""
+  #   echo "Esta función ejecuta:"
+  #   echo "  git add ."
+  #   echo '  git commit -m "mensaje"'
+  #   echo "  git push"
+  #   echo "  git status"
+  #   echo "  git log -1"
+  #   echo "  git branch -vv"
+  #   echo "======================================"
+  #   return 1
+  # fi
 
 # ============================================================
 # SELECCIÓN DE RESPALDO (y/n)
@@ -1313,7 +1313,7 @@ echo "¿Desea enviar respaldo a Google Drive? (y/n)"
 echo "Si responde 'n', continuará con respaldo Git."
 echo "========================================="
 
-read -p "Ingrese opción [y/n]: " RESPALDO
+read -p "RESPALDO? Ingrese opción [y/n]: " 
 
 # Normalizar entrada
 RESPALDO=$(echo "$RESPALDO" | tr '[:upper:]' '[:lower:]')
@@ -1326,6 +1326,9 @@ ARCHIVO_LOCAL1="$HOME/.zxfunction"
 ARCHIVO_LOCAL2="$HOME/.zxalias"
 ARCHIVO_LOCAL3="$HOME/.zshrc"
 CARPETA_REMOTA="/z"
+COPIALOCAL=cp -v ~/.zxalias ~/.zxfunction ~/.zshrc  ~/para_git/
+
+
 
 # ============================================================
 # PROCESAR OPCIÓN
@@ -1352,7 +1355,7 @@ fi
   # --------------------------------------------------------
   # Crear commit con mensaje
   # --------------------------------------------------------
-  git commit -m "$1" && \
+  git commit -m "${1:-Actualización ...}" && \
 
   # --------------------------------------------------------
   # Subir cambios al remoto

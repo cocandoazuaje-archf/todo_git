@@ -1,0 +1,325 @@
+ #!/usr/bin/env zsh
+
+#Alias y funciones documentados (.zxalias)
+
+# ============================================================
+# ALIAS Y FUNCIONES VARIOS
+# Autor: Carlos Eduardo Ocando Azuaje
+# Descripción: Colección de alias y funciones para automatizar tareas
+# ============================================================
+
+# Colores
+RED="\033[1;31m"
+RESET="\033[0m"
+
+# ---------------------------
+
+# Alias simples
+
+# ---------------------------¨
+# Abre terminal Kitty
+alias terminal='open -a kitty.app'
+
+# Grep insensible a mayúsculas con resaltado
+alias grep='grep -i --color=auto'
+
+# Abre Cursor IDE
+alias cursor='open -a Cursor.app'
+
+# Ejecuta Angular en modo desarrollo
+alias xngs='ng serve'
+
+# Compila proyecto Angular
+alias xngb='ng build'
+
+# Abre archivos o directorios
+alias o='open'
+
+# Inicia respaldo automático con Time Machine
+alias xtm='tmutil startbackup --auto'
+
+# Monitorea estado de Time Machine
+alias xtms='watch tmutil status'
+
+# Reinicia Flycut
+alias xfoff='killall Flycut && open -a Flycut && echo "Flycut reiniciado"'
+
+# Maven clean install con salida debug
+alias xmvncli='mvn clean install -X'
+
+# Ejecuta aplicación Spring Boot
+alias xmvnsp='mvn spring-boot:run'
+
+# Ejecuta Node.js
+alias nno='node'
+
+# Muestra versión Node.js
+alias xn3v='node -v'
+
+# Muestra versión pip3
+alias xp3v='pip3 -V'
+
+# Muestra variable PATH
+alias xph='echo "$PATH"'
+
+# Muestra remotos Git
+alias xgr='git remote -v'
+
+# Muestra versión Java
+alias jv='java -version'
+
+# Recarga configuración zsh
+alias x='source ~/.zshrc'
+
+alias xs='source ~/.zshrc'
+
+# Docker
+alias dk='docker'
+
+# Dotnet CLI
+alias dt='dotnet'
+
+# NPM
+alias np='npm'
+
+# Muestra discos, contenido y ruta actual
+alias cdf='df -ah / /Volumes && ls -lah && pwd'
+
+# Limpia Docker completamente
+alias dka='docker system prune -a'
+
+# Git push
+alias gps='git push'
+
+# Vagrant
+alias vg='vagrant'
+
+# Terraform
+alias tf='terraform'
+
+# Nodemon
+alias ndm='nodemon'
+
+# Hora formato 12h
+alias xh12='date +"%I:%M:%S %p"'
+
+# Hora gráfica con figlet
+alias xh12gra='date +"%H:%M:%S"| xba'
+
+# Hora completa
+alias xh='xh12&&xh12gra'
+
+# Ir a raíz
+alias r='cd / && ls -lah && pwd'
+
+# Subir directorio
+alias ..='cd .. && ll && pwd'
+
+# Volver directorio anterior
+alias .-='cd - && ll && pwd'
+
+# Listar contenido y ruta actual
+alias pw='ls -lah && pwd'
+
+# Ir a /tmp
+alias xtmp='cd /tmp && ls -lah && pwd'
+
+# Ir a tarjeta SD
+alias xssd='cd "/Volumes/tarjeta SD" && ls -lah && pwd'
+
+# Mostrar archivos ocultos
+alias xvisible='chflags nohidden'
+
+# Editar archivo de alias
+alias xvia='subl $HOME/.zxalias'
+
+# Editar archivo de funciones
+alias xvif='subl $HOME/.zxfunction'
+
+# Ping corto
+alias p='ping -c3'
+
+# Ping a Google Chile
+alias xti='ping -c3 www.google.cl'
+
+# Git abreviado
+alias xg='git'
+
+# Ver sustituciones de texto macOS
+alias xsus='defaults read -g NSUserDictionaryReplacementItems > /tmp/lis ; code /tmp/lis'
+
+# Uso de disco actual
+alias xdf='df -ah .'
+
+# Texto grande con figlet
+alias xba='figlet'
+
+# Correos temporales
+alias xcorreog='mailsy g'
+alias xcorreov='mailsy m'
+alias xcorreod='mailsy d'
+
+# Watch
+alias xw='watch'
+
+# Abre Google Keep
+alias xkeep='open https://keep.google.com/u/1/'
+
+# Python3
+alias xp3='python3'
+
+# Pip3
+alias xpi3='pip3'
+
+# ---------------------------
+
+# Alias de navegación
+
+# ---------------------------
+
+# Ir al HOME
+alias u='cd "$HOME" && ll && pwd'
+
+# Ir a carpeta pre_
+alias xpre='cd "$HOME/Documents/pre_" && ls -lah && pwd'
+
+# Ir a shell Linux
+alias xshell='cd /usr/local/shell2/shell2/linux/shell && ls -lah && pwd'
+
+# Ir a desarrollo Ionix
+alias xio='cd "$HOME/Documentos/ionix/Desarrollando" && ll && pwd'
+
+# Ir a shell2 local
+alias xshell2ls='cd /Users/carlosocando/Documentos/ionix/Desarrollando/linux/shell && ls -lah && pwd'
+
+# Editar script principal shell
+alias xvi_='code /Users/carlosocando/Documentos/ionix/Desarrollando/linux/shell/_xuplinuxshell.sh'
+
+# Nueva ventana Kitty
+alias xter='open -na kitty'
+
+# Ejecutar actualización shell
+alias xup='sh /Users/carlosocando/Documentos/ionix/Desarrollando/linux/shell/_xuplinuxshell.sh'
+
+# Editar script actualización
+alias xviup='code /Users/carlosocando/Documentos/ionix/Desarrollando/linux/shell/_xuplinuxshell.sh'
+
+# Editar hosts
+alias xvihost='code /etc/hosts'
+
+# Sublime shortcut
+alias xvi='subl'
+
+# Filtrar causes
+alias xcau1='grep -iE "cause"'
+
+# Filtrar errores comunes
+alias xcau4='grep -iE "cause|exception|failure|error|package"'
+
+# Maven clean package debug
+alias xmvnclp='mvn clean package -X'
+
+# Editar zshrc
+alias xviz='code ~/.zshrc'
+
+# Ir a proyecto Elias
+alias xeli='cd /Users/carlosocando/Documentos/referidos_elias ; ll ;pwd'
+
+# Listar solo directorios
+alias lld='ls -d */'
+
+# Iniciar GlassFish y abrir consola
+alias xglason='sh /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/bin/asadmin start-domain ; open http://www.localhost:4848/common/applications/applications.jsf'
+
+# Detener GlassFish
+alias xglasoff='sh /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/bin/stopserv'
+
+# Editar configuración GlassFish
+alias xglasconfig='code /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/domains/domain1/config/domain.xml'
+
+# Ir a config GlassFish
+alias xglasconfigcd='cd /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/domains/domain1/config/'
+
+# Ir a librerías GlassFish
+alias xglaslib='cd /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/domains/domain1/lib'
+
+# Ir a binarios GlassFish
+alias xglasbin='cd /Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/bin'
+
+# Ver remotos Git
+alias xgitremote='git remote -v'
+
+# Git add, commit y push total
+alias xgitall='git add . && git commit -m "$1" && git push'
+
+# Git push solo tar
+alias xgittar='git add ./todo_git.tar.gz && git commit -m "$1" && git push'
+
+# Copiar al portapapeles
+alias xporta='pbcopy'
+
+# Listado ordenado
+alias ls='ls -a|sort && pwd'
+
+# Ir a carpeta jars
+alias xjar='cd /Users/carlosocando/Desktop/jars'
+
+# Ir a Java downloads
+alias xcdjava='cd ~/Downloads/java'
+
+# Ir a Downloads
+alias xcddow='cd ~/Downloads/'
+
+# Detener GlassFish domain1
+alias xglasoff='/Users/carlosocando/Downloads/glassfish7/glassfish/domains/domain1/glassfish/bin/asadmin stop-domain && open http://localhost:4848/common/index.jsf'
+
+# Abrir VS Code
+alias code="open -a 'Visual Studio Code'"
+
+# Redefine cd a función xcd
+alias cd='xcd'
+
+# Git remote shortcut
+alias gitr='git remote -v'
+
+# Abrir teclado en configuración
+alias teclado='open "x-apple.systempreferences:com.apple.Keyboard-Settings.extension"'
+
+# Abrir sustitución de texto
+alias texto='open "x-apple.systempreferences:com.apple.Keyboard-Settings.extension"'
+
+# Source rápido
+alias s='source'
+
+# Abrir notificaciones
+alias notifica='open "x-apple.systempreferences:com.apple.Notifications-Settings.extension"'
+
+# Ir a Desktop
+alias cdd='cd /Users/carlosocando/Desktop'
+alias xcdd='cd ~/Desktop/'
+
+# Listar contenido tar
+alias xtart='tar -tf'
+
+# Mostrar definición comando
+alias t='type'
+
+# Listar directorios visibles
+alias xld='ll|grep -i dr && pwd'
+
+# Listar directorios
+alias xlsd='ls -d'
+
+# Git clone
+alias xgc='git clone'
+
+# Ir a repositorio Maven local
+alias xcdm2='cd ~/.m2'
+
+# Mostrar pwd
+alias p='pwd'
+
+# Python3 corto
+alias p3='python3'
+
+alias l='subl /tmp/x.log'

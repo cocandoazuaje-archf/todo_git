@@ -298,3 +298,4 @@ alias l='subl /tmp/x.log'
 alias xld='ls -lah |grep dr'
 
 alias o='open'
+ alias gits='git status'
