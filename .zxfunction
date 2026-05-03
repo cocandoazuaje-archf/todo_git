@@ -927,7 +927,7 @@ function xinsjav {
   # -------------------------
   # Verificar brew
   # -------------------------
-  if [! command -v brew >/dev/null 2>&1]; then
+  if ! command -v brew >/dev/null 2>&1; then
     echo "❌ Homebrew no está instalado."
     echo "Instálalo desde: https://brew.sh"
     return 1
@@ -1313,7 +1313,7 @@ echo "¿Desea enviar respaldo a Google Drive? (y/n)"
 echo "Si responde 'n', continuará con respaldo Git."
 echo "========================================="
 
-read -p "Ingrese opción [y/n]: " RESPALDO
+read  "RESPALDO?Ingrese opción [y/n]: " 
 
 # Normalizar entrada
 RESPALDO=$(echo "$RESPALDO" | tr '[:upper:]' '[:lower:]')
