@@ -1305,6 +1305,45 @@ function xgitall {
     return 1
   fi
 
+# ============================================================
+# SELECCIÓN DE RESPALDO (y/n)
+# ============================================================
+echo "========================================="
+echo "¿Desea enviar respaldo a Google Drive? (y/n)"
+echo "Si responde 'n', continuará con respaldo Git."
+echo "========================================="
+
+read -p "Ingrese opción [y/n]: " RESPALDO
+
+# Normalizar entrada
+RESPALDO=$(echo "$RESPALDO" | tr '[:upper:]' '[:lower:]')
+
+# ============================================================
+# CONSTANTES
+# ============================================================
+REMOTO="gdrive"
+ARCHIVO_LOCAL1="$HOME/.zxfunction"
+ARCHIVO_LOCAL2="$HOME/.zxalias"
+ARCHIVO_LOCAL3="$HOME/.zshrc"
+CARPETA_REMOTA="/z"
+
+# ============================================================
+# PROCESAR OPCIÓN
+# ============================================================
+if [[ "$RESPALDO" == "y" ]]; then
+
+    echo "Ejecutando respaldo para Drive...\n"
+
+    rclone copy "$ARCHIVO_LOCAL1" "$REMOTO":"$CARPETA_REMOTA" -P --ignore-times --progress
+    rclone copy "$ARCHIVO_LOCAL2" "$REMOTO":"$CARPETA_REMOTA" -P --ignore-times --progress
+    rclone copy "$ARCHIVO_LOCAL3" "$REMOTO":"$CARPETA_REMOTA" -P --ignore-times --progress
+    exit 0
+
+fi
+
+
+  echo "\nEjecutando respaldo para Git ...\n"
+
   # --------------------------------------------------------
   # Agregar todos los cambios al staging
   # --------------------------------------------------------
@@ -1342,7 +1381,6 @@ function xgitall {
   xpausa 10
   open "https://github.com/cocandoazuaje-archf/referidos2intento-"    
   xpausa 10
-  # xclose "Brave Browser"
 
   echo "\n**** Proceso de git completo ..."
 
