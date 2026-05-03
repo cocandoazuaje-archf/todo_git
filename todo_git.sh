@@ -1,4 +1,5 @@
 #!/bin/bash
+<<<<<<< HEAD
 # ============================================================
 # SCRIPT: Respaldo, compresión y publicación Git
 # DESCRIPCIÓN:
@@ -62,6 +63,22 @@ mkdir -p "$DESTINO"
 # ============================================================
 # COPIA DE ARCHIVOS
 # ============================================================
+=======
+
+. "$HOME/.zshrc"
+# ============================
+# CONFIG
+# ============================
+DESTINO="/Users/carlosocando/Documentos/ionix/Desarrollando/todo_git/todo_git"
+
+# Crear destino si no existe
+mkdir -p "$DESTINO"
+
+# ============================
+# COPIAS
+# ============================
+
+>>>>>>> c09005b6a3e04c6551615d1726b857838fc43202
 echo "Copiando archivos..."
 
 rsync -av --progress /Users/carlosocando/.zshrc "$DESTINO/"
@@ -76,6 +93,7 @@ rsync -av --progress /Users/carlosocando/Documents/CV/paraLlorena.pdf "$DESTINO/
 rsync -av --progress /Users/carlosocando/Documentos/ionix/Desarrollando/ "$DESTINO/desarrollando_backup/"
 rsync -av --progress /Users/carlosocando/Desktop/jars/ "$DESTINO/jars/"
 
+<<<<<<< HEAD
 
 # ============================================================
 # CREAR BACKUP TAR
@@ -108,3 +126,14 @@ echo "\nElementos borrados y copia finalizada."
 
 
 source todo_git_drive_git.sh
+=======
+echo "\n------------------------------------------------------------"
+open /Users/carlosocando/Documentos/ionix/Desarrollando/todo_git/todo_git
+xread "la eliminacion"
+echo "eliminando ..."
+rm -rf "$DESTINO"/*
+rm -f "/Users/carlosocando/Documentos/ionix/Desarrollando/todo_git/todo_git/.zshrc" "/Users/carlosocando/Documentos/ionix/Desarrollando/todo_git/todo_git/.zxalias" "/Users/carlosocando/Documentos/ionix/Desarrollando/todo_git/todo_git/.zxfunction"
+open /Users/carlosocando/Documentos/ionix/Desarrollando/todo_git/todo_git
+echo "\n------------------------------------------------------------"
+echo "\nElemntos borrados y Copia finalizada."
+>>>>>>> c09005b6a3e04c6551615d1726b857838fc43202
