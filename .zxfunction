@@ -1359,7 +1359,7 @@ fi
   # --------------------------------------------------------
   # Subir cambios al remoto
   # --------------------------------------------------------
-  git push  && \
+  git push  origin msater && \
 
   # --------------------------------------------------------
   # Mostrar estado actual
@@ -1381,9 +1381,7 @@ fi
   echo "-------------------------------\n"
 
   xpausa 10
-  open "https://github.com/cocandoazuaje-archf/referidos2intento-"    
-  xpausa 10
-
+  open "https://github.com/cocandoazuaje-archf/todo_git"   
   echo "\n**** Proceso de git completo ..."
 
 }
