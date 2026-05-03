@@ -1340,7 +1340,8 @@ function xgitall {
   echo "-------------------------------\n"
 
   xpausa 10
-  open -a "Brave Browser" "https://github.com/cocandoazuaje-archf/referidos2intento-"    xpausa 10
+  open -a "Brave Browser" "https://github.com/cocandoazuaje-archf/referidos2intento-"    
+  xpausa 10
   xclose "Brave Browser"
 
   echo "\n**** Proceso de git completo ..."
