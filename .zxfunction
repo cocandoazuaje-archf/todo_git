@@ -1478,29 +1478,23 @@ function dictado {
 
 function xmvnglas {
 
-    local WAR_NAME=$(asadmin list-applications|head -1 | sed 's/  <web>//')
-    local GLASSFISH_ASADMIN="/Users/carlosocando/Downloads/glassfish7/glassfish/domains/domain1/bin/asadmin"
-    local FUENTES='/Users/carlosocando/Documentos/NetBeansProjects/referidos2intento'
-    local WAR_PATH="${FUENTES}/target/${WAR_NAME}"
+  # mvn clean package
+  # /Users/carlosocando/Downloads/glassfish7/glassfish/domains/domain1/bin/asadmin  undeploy \
+  # /Users/carlosocando/Documentos/NetBeansProjects/referidos2intento/target/"$2".war
+  # open http://localhost:4848/common/index.jsf
 
-  mvn clean package
-  echo "**** paso1 undeploy"
-  open http://localhost:4848/common/index.jsf
-  "$GLASSFISH_ASADMIN" undeploy "$WAR_NAME"
-  echo '"$GLASSFISH_ASADMIN" undeploy "$WAR_NAME"'
-  xread "**** para continuar"
-  # exit 0
-  echo "**** paso2 glassfish"
-  open http://localhost:4848/common/index.jsf
-  xread "**** para continuar "
-  # exit 0
-  echo "**** paso3 deploy"
-  "$GLASSFISH_ASADMIN" redeploy "$WAR_NAME"
-  xread "**** para continuar"
-  # exit 0
-  echo "**** paso4 glassfish"
-  open http://localhost:4848/common/index.jsf
-  # exit 0
+  # /Users/carlosocando/Downloads/glassfish7/glassfish/domains/domain1/bin/asadmin  redeploy /Users/carlosocando/Documentos/NetBeansProjects/referidos2intento/target/"$2".war
+  # open http://localhost:4848/common/index.jsf
+  
+mvn clean package
+asadmin --host localhost --port 4848 undeploy referidos2intento-1.0
+open http://localhost:4848/common/index.jsf
+xread "continuar ..." 
+asadmin deploy target/referidos2intento-1.0.war
+open http://localhost:4848/common/index.jsf
+
+
+
 }
 
 
