@@ -1313,7 +1313,7 @@ echo "¿Desea enviar respaldo a Google Drive? (y/n)"
 echo "Si responde 'n', continuará con respaldo Git."
 echo "========================================="
 
-read -p "RESPALDO? Ingrese opción [y/n]: " 
+read -p "Ingrese opción [y/n]: " RESPALDO
 
 # Normalizar entrada
 RESPALDO=$(echo "$RESPALDO" | tr '[:upper:]' '[:lower:]')
