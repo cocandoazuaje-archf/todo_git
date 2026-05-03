@@ -724,6 +724,45 @@ function xpausa {
   sleep "$1"
 }
 
+
+# Autor: Carlos Ocando
+# Descripción:
+#   Búsqueda avanzada tipo grep para proyectos grandes.
+#   - Recursiva
+#   - Case-insensitive por defecto
+#   - Muestra archivo + línea + contenido
+#   - Excluye node_modules y .git
+# ============================================================
+
+function xgrepgpt {
+
+  # ------------------------------------------------------------
+  # Validación de parámetro
+  # ------------------------------------------------------------
+  if [[ -z "$1" ]]; then
+    echo "Uso: xgrepgpt <texto>"
+    return 1
+  fi
+
+  # ------------------------------------------------------------
+  # Variables
+  # ------------------------------------------------------------
+  SEARCH="$1"
+
+  echo "======================================"
+  echo "🔎 Buscando: $SEARCH"
+  echo "======================================"
+
+  # ------------------------------------------------------------
+  # Búsqueda
+  # ------------------------------------------------------------
+  sudo grep -rin --color=always \
+   --binary-files=without-match \
+    --exclude-dir=node_modules \
+    --exclude-dir=.git \
+    "$SEARCH" .
+}
+
 # ____________________________________________________________
 # GREP
 # BÚSQUEDA RECURSIVA DE CONTENIDO
@@ -1295,6 +1334,12 @@ function xgitall {
     # Mostrar rama actual con tracking
     # --------------------------------------------------------
     git branch -vv
+    xpause 5
+    open -n https://github.com/cocandoazuaje-archf/referidos2intento-
+    xpause 5
+
+    echo "\n**** Proceso de git completo ..."
+
 }
 
 # ============================================================
@@ -1480,10 +1525,10 @@ function xmvnglas {
 
 mvn clean package
 asadmin --host localhost --port 4848 undeploy referidos2intento-1.0
-open http://localhost:4848/common/index.jsf
-xread "continuar ..." 
-asadmin deploy target/referidos2intento-1.0.war
-open http://localhost:4848/common/index.jsf
+open -n http://localhost:4848/common/index.jsf
+xpausa 5 
+asadmin deploy "$1"
+open -n http://localhost:4848/common/index.jsf
 
 
 
@@ -2162,43 +2207,50 @@ function xping() {
 }
 
 
-# ============================================================
-# FUNCIÓN: xsync_git
-# Autor: Carlos Ocando
-# Descripción:
-#   Sincroniza archivos desde un directorio local hacia ~/para_git/
-#   y ejecuta un commit automático con xgitall.
-#   Incluye carga de dependencias desde trae_zx.sh.
-# ============================================================
-
 function xsyngit() {
 
   echo "=============================="
   echo "  INICIANDO SINCRONIZACIÓN"
   echo "=============================="
 
-echo "**** use Source..."
-echo "------------------------\n"
-rsync -avh --progress ~/.zxalias /Users/carlosocando/para_git/
-rsync -avh --progress ~/.zxfunction /Users/carlosocando/para_git/
-rsync -avh --progress ~/.zshrc /Users/carlosocando/para_git/
+  # ------------------------------------------------------------
+  # Validar parámetro obligatorio
+  # ------------------------------------------------------------
+  if [[ -z "$1" ]]; then
+    echo "⚠️  No se recibió mensaje de commit"
+    echo "💡 Uso: xsyngit \"mensaje del commit\""
+    return 1
+  fi
+
+  MENSAJE="$1"
+
+  echo "🧾 Mensaje de commit: $MENSAJE"
+
+  echo "**** use Source..."
+  echo "------------------------"
+
+  # ------------------------------------------------------------
+  # Sync de configuración
+  # ------------------------------------------------------------
+  rsync -avh --progress ~/.zxalias /Users/carlosocando/para_git/
+  rsync -avh --progress ~/.zxfunction /Users/carlosocando/para_git/
+  rsync -avh --progress ~/.zshrc /Users/carlosocando/para_git/
 
   # ------------------------------------------------------------
   # Cargar dependencias externas
   # ------------------------------------------------------------
-  if [[ -f "/Users/carlosocando/para_git/trae_zx.sh" ]]; then
-    source /Users/carlosocando/para_git/trae_zx.sh
-  else
-    echo "❌ Error: no se encontró trae_zx.sh"
-    return 1
-  fi
+  # if [[ -f "/Users/carlosocando/para_git/trae_zx.sh" ]]; then
+  #   source /Users/carlosocando/para_git/trae_zx.sh
+  # else
+  #   echo "❌ Error: no se encontró trae_zx.sh"
+  #   return 1
+  # fi
 
   # ------------------------------------------------------------
   # Variables principales
   # ------------------------------------------------------------
   ORIGEN="/Users/carlosocando/Documentos/ionix/Desarrollando/"
   DESTINO="$HOME/para_git/"
-  MENSAJE="Actualizando nuevo directorios con perfiles de usuario y datos .."
 
   # ------------------------------------------------------------
   # Validar directorio origen
@@ -2209,7 +2261,7 @@ rsync -avh --progress ~/.zshrc /Users/carlosocando/para_git/
   fi
 
   # ------------------------------------------------------------
-  # Sincronización con rsync
+  # Sincronización principal
   # ------------------------------------------------------------
   echo "📦 Sincronizando archivos..."
   rsync -avh --progress "$ORIGEN"* "$DESTINO"
@@ -2228,5 +2280,71 @@ rsync -avh --progress ~/.zshrc /Users/carlosocando/para_git/
   echo "=============================="
   echo "  SINCRONIZACIÓN COMPLETADA"
   echo "=============================="
+}
 
+# ============================================================
+# FUNCIÓN: xclose
+# AUTOR: Carlos Ocando
+# DESCRIPCIÓN:
+#   Cierra aplicaciones en macOS de forma limpia (equivalente
+#   a Cmd + Q) usando AppleScript.
+#
+#   - Recibe como parámetro el nombre de la aplicación
+#   - Si no recibe parámetro, muestra ayuda de uso
+#   - Espera a que la aplicación se cierre completamente
+#
+# USO:
+#   xclose "Brave Browser"
+#   xclose "Safari"
+#   xclose "Google Chrome"
+# ============================================================
+
+function xclose {
+
+  echo "================================================"
+  echo "        CERRADOR DE APLICACIONES macOS"
+  echo "================================================"
+
+  # ------------------------------------------------------------
+  # VALIDACIÓN DE PARÁMETRO
+  # ------------------------------------------------------------
+  if [[ -z "$1" ]]; then
+    echo ""
+    echo "❌ ERROR: No se recibió el nombre de la aplicación"
+    echo ""
+    echo "🧠 USO CORRECTO:"
+    echo "   xclose \"Brave Browser\""
+    echo "   xclose \"Safari\""
+    echo "   xclose \"Google Chrome\""
+    echo ""
+    echo "💡 Este comando cierra la aplicación de forma limpia"
+    echo "   (equivalente a Cmd + Q)"
+    echo ""
+    return 1
+  fi
+
+  # ------------------------------------------------------------
+  # VARIABLE PRINCIPAL
+  # ------------------------------------------------------------
+  APP_NAME="$1"
+
+  echo ""
+  echo "🧾 Cerrando aplicación: $APP_NAME"
+  echo ""
+
+  # ------------------------------------------------------------
+  # CIERRE LIMPIO (APPLE SCRIPT)
+  # ------------------------------------------------------------
+  osascript -e "tell application \"$APP_NAME\" to quit"
+
+  # ------------------------------------------------------------
+  # ESPERAR CIERRE COMPLETO DEL PROCESO
+  # ------------------------------------------------------------
+  while pgrep -f "$APP_NAME" > /dev/null; do
+    sleep 0.5
+  done
+
+  echo ""
+  echo "✅ $APP_NAME cerrado correctamente"
+  echo "================================================"
 }
