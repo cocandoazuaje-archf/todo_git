@@ -86,15 +86,7 @@ alias ndm='nodemon'
 # ============================================================
 
 # Git acceso rápido
-alias xg='git'
 
-# Ver remotos Git
-alias xgr='git remote -v'
-alias xgitremote='git remote -v'
-alias gitr='git remote -v'
-
-# Git push rápido
-alias gps='git push'
 
 # Git add, commit y push total
 # alias xgitall='git add . && git commit -m "$1" && git push'
@@ -298,4 +290,8 @@ alias l='subl /tmp/x.log'
 alias xld='ls -lah |grep dr'
 
 alias o='open'
- alias gits='git status'
+
+alias gits='git status'
+alias git='git'
+alias gitr='git remote -v'
+alias gitp='git push'
