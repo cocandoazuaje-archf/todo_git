@@ -1478,14 +1478,6 @@ function dictado {
 
 function xmvnglas {
 
-  # mvn clean package
-  # /Users/carlosocando/Downloads/glassfish7/glassfish/domains/domain1/bin/asadmin  undeploy \
-  # /Users/carlosocando/Documentos/NetBeansProjects/referidos2intento/target/"$2".war
-  # open http://localhost:4848/common/index.jsf
-
-  # /Users/carlosocando/Downloads/glassfish7/glassfish/domains/domain1/bin/asadmin  redeploy /Users/carlosocando/Documentos/NetBeansProjects/referidos2intento/target/"$2".war
-  # open http://localhost:4848/common/index.jsf
-  
 mvn clean package
 asadmin --host localhost --port 4848 undeploy referidos2intento-1.0
 open http://localhost:4848/common/index.jsf
@@ -2167,4 +2159,68 @@ function xping() {
   # FIN
   # ----------------------------------------------------------
   echo -e "${BLUE}=== Finalizado ===${RESET}"
+}
+
+
+# ============================================================
+# FUNCIÓN: xsync_git
+# Autor: Carlos Ocando
+# Descripción:
+#   Sincroniza archivos desde un directorio local hacia ~/para_git/
+#   y ejecuta un commit automático con xgitall.
+#   Incluye carga de dependencias desde trae_zx.sh.
+# ============================================================
+
+function xsyngit() {
+
+  echo "=============================="
+  echo "  INICIANDO SINCRONIZACIÓN"
+  echo "=============================="
+
+  # ------------------------------------------------------------
+  # Cargar dependencias externas
+  # ------------------------------------------------------------
+  if [[ -f "/Users/carlosocando/para_git/trae_zx.sh" ]]; then
+    source /Users/carlosocando/para_git/trae_zx.sh
+  else
+    echo "❌ Error: no se encontró trae_zx.sh"
+    return 1
+  fi
+
+  # ------------------------------------------------------------
+  # Variables principales
+  # ------------------------------------------------------------
+  ORIGEN="/Users/carlosocando/Documentos/ionix/Desarrollando/"
+  DESTINO="$HOME/para_git/"
+  MENSAJE="Actualizando nuevo directorios con perfiles de usuario y datos .."
+
+  # ------------------------------------------------------------
+  # Validar directorio origen
+  # ------------------------------------------------------------
+  if [[ ! -d "$ORIGEN" ]]; then
+    echo "❌ Error: el directorio origen no existe: $ORIGEN"
+    return 1
+  fi
+
+  # ------------------------------------------------------------
+  # Sincronización con rsync
+  # ------------------------------------------------------------
+  echo "📦 Sincronizando archivos..."
+  rsync -avh --progress "$ORIGEN"* "$DESTINO"
+
+  if [[ $? -ne 0 ]]; then
+    echo "❌ Error durante rsync"
+    return 1
+  fi
+
+  # ------------------------------------------------------------
+  # Commit automático
+  # ------------------------------------------------------------
+  echo "🧾 Ejecutando commit..."
+  xgitall "$MENSAJE"
+
+  echo "=============================="
+  echo "  SINCRONIZACIÓN COMPLETADA"
+  echo "=============================="
+
 }
