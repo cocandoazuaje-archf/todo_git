@@ -1333,10 +1333,16 @@ function xgitall {
     # --------------------------------------------------------
     # Mostrar rama actual con tracking
     # --------------------------------------------------------
+  
+   echo "\n**** Información de ramas ...."
+   echo "--------------------------------"
     git branch -vv
-    xpause 5
+   echo "-------------------------------\n"
+
+    xpausa 10
     open -n https://github.com/cocandoazuaje-archf/referidos2intento-
-    xpause 5
+    xpausa 10
+    xclose "Brave Browser"
 
     echo "\n**** Proceso de git completo ..."
 
