@@ -706,10 +706,9 @@ function xsubir {
 #   - Pausa ejecución por segundos
 # ------------------------------------------------------------
 function xpausa {
-
   # Validar parámetro
   if [[ -z "$1" ]]; then
-    echo "Uso: xpausa <segundos>"
+    echo "Uso: echo <segundos>"
     return 1
   fi
 
@@ -1321,27 +1320,63 @@ RESPALDO=$(echo "$RESPALDO" | tr '[:upper:]' '[:lower:]')
 # ============================================================
 # CONSTANTES
 # ============================================================
+# ============================================================
+# RESPALDO MÚLTIPLE A GOOGLE DRIVE
+# ============================================================
+
 REMOTO="gdrive"
+CARPETA_REMOTA="/todo_git"
+
 ARCHIVO_LOCAL1="$HOME/.zxfunction"
 ARCHIVO_LOCAL2="$HOME/.zxalias"
 ARCHIVO_LOCAL3="$HOME/.zshrc"
-CARPETA_REMOTA="/z"
-COPIALOCAL=cp -v ~/.zxalias ~/.zxfunction ~/.zshrc  ~/para_git/
+ARCHIVO_LOCAL4="/Users/carlosocando/para_git"
 
+# ------------------------------------------------------------
+# LISTA DE ARCHIVOS
+# ------------------------------------------------------------
+ARCHIVOS=(
+  "$ARCHIVO_LOCAL1"
+  "$ARCHIVO_LOCAL2"
+  "$ARCHIVO_LOCAL3"
+  "$ARCHIVO_LOCAL4"
+)
 
-# ============================================================
-# PROCESAR OPCIÓN
-# ============================================================
-if [[ "$RESPALDO" == "y" ]]; then
+# ------------------------------------------------------------
+# RECORRER Y SUBIR CADA ARCHIVO
+# ------------------------------------------------------------
+for ARCHIVO in "${ARCHIVOS[@]}"; do
 
-    echo "Ejecutando respaldo para Drive...\n"
+  # Validar existencia
+  if [[ ! -f "$ARCHIVO" ]]; then
+    echo "❌ No existe: $ARCHIVO"
+    continue
+  fi
 
-    rclone copy "$ARCHIVO_LOCAL1" "$REMOTO":"$CARPETA_REMOTA" -P --ignore-times --progress
-    rclone copy "$ARCHIVO_LOCAL2" "$REMOTO":"$CARPETA_REMOTA" -P --ignore-times --progress
-    rclone copy "$ARCHIVO_LOCAL3" "$REMOTO":"$CARPETA_REMOTA" -P --ignore-times --progress
-    exit 0
+  echo "========================================="
+  echo "📤 Subiendo: $ARCHIVO"
+  echo "========================================="
 
-fi
+  rclone copy "$ARCHIVO" "$REMOTO":"$CARPETA_REMOTA" \
+    -P \
+    --ignore-times \
+    --progress
+
+  # Validar resultado
+  if [[ $? -eq 0 ]]; then
+    echo "✅ Subida completada: $ARCHIVO"
+  else
+    echo "❌ Error al subir: $ARCHIVO"
+  fi
+  echo "Conectar con la pagina de Google Drive para verificar el respaldo ..."
+  xpausa  5 
+ open https://drive.google.com/drive/u/1/my-drive
+
+done
+
+echo "========================================="
+echo "🚀 Respaldo finalizado."
+echo "========================================="
 
 
   echo "\nEjecutando respaldo para Git ...\n"
@@ -2391,4 +2426,93 @@ function xinfo() {
       echo ""
       echo "✅ $APP_NAME cerrado correctamente"
       echo "================================================"
-    }
+   }
+
+    # ============================================================
+# FUNCIÓN: xformat
+# Autor: Carlos Eduardo Ocando Azuaje
+# Descripción:
+#   - Formatea scripts Bash/Zsh usando shfmt
+#   - Reindenta automáticamente
+#   - Sobrescribe el archivo original
+#   - Muestra estado del proceso
+#
+# Uso:
+#   xformat <archivo>
+#
+# Ejemplo:
+#   xformat ~/.zxfunction
+# ============================================================
+
+function xformat {
+
+  # ----------------------------------------------------------
+  # Validar parámetro obligatorio
+  # ----------------------------------------------------------
+  if [[ -z "$1" ]]; then
+    echo "=================================================="
+    echo "FUNCIÓN: xformat"
+    echo "=================================================="
+    echo "DESCRIPCIÓN:"
+    echo "  Formatea scripts Bash/Zsh usando shfmt."
+    echo ""
+    echo "FUNCIONES:"
+    echo "  ✔ Reindentación automática"
+    echo "  ✔ Corrección estructural"
+    echo "  ✔ Sobrescribe archivo original"
+    echo ""
+    echo "REQUISITO:"
+    echo "  brew install shfmt"
+    echo ""
+    echo "USO:"
+    echo "  xformat <archivo>"
+    echo ""
+    echo "EJEMPLO:"
+    echo "  xformat ~/.zxfunction"
+    echo "=================================================="
+    return 1
+  fi
+
+  # ----------------------------------------------------------
+  # Validar existencia del archivo
+  # ----------------------------------------------------------
+  if [[ ! -f "$1" ]]; then
+    echo "❌ Error: Archivo no encontrado -> $1"
+    return 1
+  fi
+
+  # ----------------------------------------------------------
+  # Validar dependencia
+  # ----------------------------------------------------------
+  if ! command -v shfmt >/dev/null 2>&1; then
+    echo "❌ Error: shfmt no está instalado."
+    echo "📦 Instálalo con: brew install shfmt"
+    return 1
+  fi
+
+  # ----------------------------------------------------------
+  # Inicio
+  # ----------------------------------------------------------
+  echo "=================================================="
+  echo "🔧 Formateando: $1"
+  echo "=================================================="
+
+  # ----------------------------------------------------------
+  # Ejecutar formateo
+  # ----------------------------------------------------------
+  shfmt -i 0 -w "$1"
+
+  # ----------------------------------------------------------
+  # Validar resultado
+  # ----------------------------------------------------------
+  if [[ $? -eq 0 ]]; then
+    echo ""
+    echo "✅ Proceso finalizado correctamente."
+  else
+    echo ""
+    echo "❌ Error durante el formateo."
+    return 1
+  fi
+
+
+}
