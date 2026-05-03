@@ -1,7 +1,7 @@
 #!/bin/bash
 # ============================================================
 # UTILIDADES PERSONALIZADAS PARA TERMINAL
-# Autor: Ing. Carlos Eduardo Ocando Azuaje
+# Autor: Carlos Eduardo Ocando Azuaje
 # Descripción:
 #   - Variables globales para despliegue GlassFish
 #   - Función avanzada de búsqueda de archivos
