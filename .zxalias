@@ -87,7 +87,6 @@ alias ndm='nodemon'
 
 # Git acceso rápido
 
-
 # Git add, commit y push total
 # alias xgitall='git add . && git commit -m "$1" && git push'
 
@@ -201,22 +200,27 @@ alias xcdm2='cd ~/.m2'
 # Mostrar archivos ocultos
 alias xvisible='chflags nohidden'
 
-  alias xviz='vim $HOME/.zxfunction'
-  alias xvia='vim $HOME/.zxalias'
-  alias xvif='vim $HOME/.zxfunction'
+alias xviz='vim $HOME/.zxfunction'
+alias xvia='vim $HOME/.zxalias'
+alias xvif='vim $HOME/.zxfunction'
 
-  alias xsubz='subl $HOME/.zshrc'
-  alias xsuba='subl $HOME/.zxalias'
-  alias xsubf='subl $HOME/.zxfunction'
+alias xsubz='subl $HOME/.zshrc'
+alias xsuba='subl $HOME/.zxalias'
+alias xsubf='subl $HOME/.zxfunction'
 
-  alias xcodz='code $HOME/.zshrc'
-  alias xcoda='code $HOME/.zxalias'
-  alias xcodf='code $HOME/.zxfunction'
+alias xcodz='code $HOME/.zshrc'
+alias xcoda='code $HOME/.zxalias'
+alias xcodf='code $HOME/.zxfunction'
 
-  alias xcodh='code /etc/hosts'
-  alias xsubh='subl /etc/hosts'
-  alias xvih='vim /etc/hosts'
+alias xcodh='code /etc/hosts'
+alias xsubh='subl /etc/hosts'
+alias xvih='vim /etc/hosts'
 
+alias xviz='vim $HOME/.zshrc'
+alias xvia='vim $HOME/.zxalias'
+alias xvif='vim $HOME/.zxfunction'
+
+alias xvih='vim /etc/hosts'
 
 # Editar script principal shell
 alias xcod_x='code /Users/carlosocando/Documentos/ionix/Desarrollando/linux/shell/_xuplinuxshell.sh'
@@ -298,3 +302,5 @@ alias gitp='git push'
 alias gitb='git branch'
 alias gitbn='git -m'
 alias gitrn='git remote set-url origin'
+alias xsintax='bash -n'
+alias xformathtml='prettier --write  '

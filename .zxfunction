@@ -54,17 +54,17 @@ RESET="\033[0m"
 # ============================================================
 function xrequire() {
 
-  # Validar parámetro
-  if [ -z "$1" ]; then
-    echo "❌ Uso: xrequire <comando>"
-    return 1
-  fi
+	# Validar parámetro
+	if [ -z "$1" ]; then
+		echo "❌ Uso: xrequire <comando>"
+		return 1
+	fi
 
-  # Verificar existencia
-  if ! command -v "$1" >/dev/null 2>&1; then
-    echo "❌ Dependencia faltante: $1"
-    return 1
-  fi
+	# Verificar existencia
+	if ! command -v "$1" >/dev/null 2>&1; then
+		echo "❌ Dependencia faltante: $1"
+		return 1
+	fi
 }
 
 # ============================================================
@@ -81,49 +81,49 @@ function xrequire() {
 # ============================================================
 function xfind() {
 
-  local archivos
-  local filtro="$2"
+	local archivos
+	local filtro="$2"
 
-  # Validar parámetro principal
-  if [ -z "$1" ]; then
-    echo "❌ Uso: xfind <archivo> [texto_a_filtrar]"
-    echo "📌 Ejemplo:"
-    echo '   xfind "*.jar" crypto'
-    return 1
-  fi
+	# Validar parámetro principal
+	if [ -z "$1" ]; then
+		echo "❌ Uso: xfind <archivo> [texto_a_filtrar]"
+		echo "📌 Ejemplo:"
+		echo '   xfind "*.jar" crypto'
+		return 1
+	fi
 
-  # Solicitar filtro si no fue proporcionado
-  if [ -z "$filtro" ]; then
-    read "filtro?**** Ingrese texto para filtrar resultados (Enter para omitir): "
-  fi
+	# Solicitar filtro si no fue proporcionado
+	if [ -z "$filtro" ]; then
+		read "filtro?**** Ingrese texto para filtrar resultados (Enter para omitir): "
+	fi
 
-  echo "**** Buscando ..."
+	echo "**** Buscando ..."
 
-  # Buscar archivos con o sin filtro
-  if [ -n "$filtro" ]; then
-    archivos=$(sudo find . -type f -name "$1" 2>/dev/null | grep -i --color=always -F "$filtro")
-  else
-    archivos=$(sudo find . -type f -name "$1" 2>/dev/null)
-  fi
+	# Buscar archivos con o sin filtro
+	if [ -n "$filtro" ]; then
+		archivos=$(sudo find . -type f -name "$1" 2>/dev/null | grep -i --color=always -F "$filtro")
+	else
+		archivos=$(sudo find . -type f -name "$1" 2>/dev/null)
+	fi
 
-  # Guardar resultados
-  echo "$archivos" > /tmp/xfind.txt
+	# Guardar resultados
+	echo "$archivos" >/tmp/xfind.txt
 
-  # Mostrar resultados
-  echo -e "\n**** Resultados encontrados:"
-  echo "$archivos"
+	# Mostrar resultados
+	echo -e -e "\n**** Resultados encontrados:"
+	echo "$archivos"
 
-  # Información adicional
-  echo -e "\n**** cmd + ctrl + G / (Busca: $1)"
+	# Información adicional
+	echo -e -e "\n**** cmd + ctrl + G / (Busca: $1)"
 
-  if [ -n "$filtro" ]; then
-    echo "**** Filtro aplicado: $filtro"
-  fi
+	if [ -n "$filtro" ]; then
+		echo "**** Filtro aplicado: $filtro"
+	fi
 
-  echo "**** Archivos encontrados: $(echo "$archivos" | grep -c .)"
+	echo "**** Archivos encontrados: $(echo "$archivos" | grep -c .)"
 
-  # Abrir resultados en Sublime Text
-  subl /tmp/xfind.txt
+	# Abrir resultados en Sublime Text
+	subl /tmp/xfind.txt
 }
 
 # ------------------------------------------------------------
@@ -135,9 +135,9 @@ function xfind() {
 
 function xkeepz {
 
-  pbcopy < ~/.zshrc
+	pbcopy <~/.zshrc
 
-  open "https://keep.google.com/u/0/#NOTE/1cHY3dqr_pplDokRVaP79pV0zGYsWguTSj8EMpmlXbPeSmHTgMgNua-exwhfhG9I"
+	open "https://keep.google.com/u/0/#NOTE/1cHY3dqr_pplDokRVaP79pV0zGYsWguTSj8EMpmlXbPeSmHTgMgNua-exwhfhG9I"
 
 }
 
@@ -152,11 +152,11 @@ function xkeepz {
 
 function xkeeps {
 
-  open "x-apple.systempreferences:com.apple.preference.keyboard"
+	open "x-apple.systempreferences:com.apple.preference.keyboard"
 
-  cat "/Users/carlosocando/de_todo/Sustituciones de texto.plist" | pbcopy
+	cat "/Users/carlosocando/de_todo/Sustituciones de texto.plist" | pbcopy
 
-  open "https://keep.google.com/u/0/#NOTE/1y0Kv4i0UsOA7jgni1XGqdbvUaatlLr7PGKy1OMztdc5vaob3tP2PyibmBCZy8Wo"
+	open "https://keep.google.com/u/0/#NOTE/1y0Kv4i0UsOA7jgni1XGqdbvUaatlLr7PGKy1OMztdc5vaob3tP2PyibmBCZy8Wo"
 
 }
 
@@ -169,9 +169,9 @@ function xkeeps {
 
 function xkeepa {
 
-  pbcopy < ~/.zxalias
+	pbcopy <~/.zxalias
 
-  open "https://keep.google.com/u/0/#NOTE/19Up941HW3Lz3Wus5YLUA3tWAK8nSCd297uMbPzmbDQAAnLCkGg8ZoHverMFXBQ"
+	open "https://keep.google.com/u/0/#NOTE/19Up941HW3Lz3Wus5YLUA3tWAK8nSCd297uMbPzmbDQAAnLCkGg8ZoHverMFXBQ"
 
 }
 
@@ -184,9 +184,9 @@ function xkeepa {
 
 function xkeepg {
 
-  pbcopy < ~/xglasmenu.sh
+	pbcopy <~/xglasmenu.sh
 
-  open "https://keep.google.com/u/0/#NOTE/1dzBq4kCvpda6GNHBjVAfIC-Lp4-TUN2_Mzyv68xzkHItDA6NYmUdZIeU9_-4lDE"
+	open "https://keep.google.com/u/0/#NOTE/1dzBq4kCvpda6GNHBjVAfIC-Lp4-TUN2_Mzyv68xzkHItDA6NYmUdZIeU9_-4lDE"
 
 }
 
@@ -199,14 +199,11 @@ function xkeepg {
 
 function xkeepf {
 
-  pbcopy < ~/.zxfunction
+	pbcopy <~/.zxfunction
 
-  open "https://keep.google.com/u/0/#NOTE/1O8QXdPmSMGasEnlwymtrradJ7mK-7QdzUwKAMSH3IGZDrDdmUg7W8_pu_TsdKpg"
+	open "https://keep.google.com/u/0/#NOTE/1O8QXdPmSMGasEnlwymtrradJ7mK-7QdzUwKAMSH3IGZDrDdmUg7W8_pu_TsdKpg"
 
 }
-
-
-
 
 # ____________________________________________________________
 # FD / GREP
@@ -229,19 +226,19 @@ function xkeepf {
 #   xfd2 <patron1> <patron2>
 # ------------------------------------------------------------
 function xfd2 {
-  echo "**** Procesando ..."
+	echo "**** Procesando ..."
 
-  # Validar cantidad mínima de parámetros
-  if [ $# -lt 2 ]; then
-    echo "Uso: xfd2 <patron1> <patron2>"
-    return 1
-  fi
+	# Validar cantidad mínima de parámetros
+	if [ $# -lt 2 ]; then
+		echo "Uso: xfd2 <patron1> <patron2>"
+		return 1
+	fi
 
-  # Buscar coincidencias recursivamente
-  grep -R -i -E "$1|$2" . > /tmp/xfd2.txt
+	# Buscar coincidencias recursivamente
+	grep -R -i -E "$1|$2" . >/tmp/xfd2.txt
 
-  # Abrir resultados
-  subl /tmp/xfd2.txt
+	# Abrir resultados
+	subl /tmp/xfd2.txt
 }
 
 # ------------------------------------------------------------
@@ -257,22 +254,22 @@ function xfd2 {
 #   xfd <patron>
 # ------------------------------------------------------------
 function xfd {
-  echo "**** Procesando ..."
+	echo "**** Procesando ..."
 
-  # Verificar disponibilidad del comando fd
-  fd -H || return 1
+	# Verificar disponibilidad del comando fd
+	fd -H || return 1
 
-  # Validar parámetro obligatorio
-  if [ $# -eq 0 ]; then
-    echo "Uso: xfd <patron>"
-    return 1
-  fi
+	# Validar parámetro obligatorio
+	if [ $# -eq 0 ]; then
+		echo "Uso: xfd <patron>"
+		return 1
+	fi
 
-  # Ejecutar búsqueda
-  fd -i "$1" > /tmp/xfd.txt
+	# Ejecutar búsqueda
+	fd -i "$1" >/tmp/xfd.txt
 
-  # Abrir resultados
-  subl /tmp/xfd.txt
+	# Abrir resultados
+	subl /tmp/xfd.txt
 }
 
 # ____________________________________________________________
@@ -290,19 +287,19 @@ function xfd {
 #   xfinder [ruta]
 # ------------------------------------------------------------
 function xfinder {
-  echo "**** Procesando ..."
+	echo "**** Procesando ..."
 
-  # Usar ruta actual si no se especifica
-  RUTA="${1:-$PWD}"
+	# Usar ruta actual si no se especifica
+	RUTA="${1:-$PWD}"
 
-  # Validar existencia del directorio
-  if [ ! -d "$RUTA" ]; then
-    echo "❌ Ruta no válida: $RUTA"
-    return 1
-  fi
+	# Validar existencia del directorio
+	if [ ! -d "$RUTA" ]; then
+		echo "❌ Ruta no válida: $RUTA"
+		return 1
+	fi
 
-  # Abrir en Finder
-  open "$RUTA"
+	# Abrir en Finder
+	open "$RUTA"
 }
 
 # ____________________________________________________________
@@ -323,11 +320,11 @@ function xfinder {
 # ------------------------------------------------------------
 function xll() {
 
-  # Listado detallado ordenado por tamaño
-  command ls -lahSr "${1:-.}"
+	# Listado detallado ordenado por tamaño
+	command ls -lahSr "${1:-.}"
 
-  # Mostrar directorio actual
-  builtin pwd
+	# Mostrar directorio actual
+	builtin pwd
 }
 
 # ------------------------------------------------------------
@@ -336,9 +333,8 @@ function xll() {
 #   - Alias funcional para xll
 # ------------------------------------------------------------
 function ll {
-  xll "$1"
+	xll "$1"
 }
-
 
 # ____________________________________________________________
 # RED
@@ -350,25 +346,25 @@ function ll {
 # ____________________________________________________________
 function xip {
 
-  # Bucle infinito de monitoreo
-  while true; do
-    clear
+	# Bucle infinito de monitoreo
+	while true; do
+		clear
 
-    # Encabezado
-    echo "**** Informacion sobre ips"
+		# Encabezado
+		echo "**** Informacion sobre ips"
 
-    # Mostrar IP pública
-    echo -e "\033[1;32mPublica:\033[0m $(curl -s ifconfig.me)"
+		# Mostrar IP pública
+		echo -e "\033[1;32mPublica:\033[0m $(curl -s ifconfig.me)"
 
-    # Mostrar IP local
-    echo -e "\033[1;34mLocal:\033[0m $(ipconfig getifaddr en0)"
+		# Mostrar IP local
+		echo -e "\033[1;34mLocal:\033[0m $(ipconfig getifaddr en0)"
 
-    # Mostrar gateway por defecto
-    echo -e "\033[1;31mGateway:\033[0m $(route -n get default | awk '/gateway/ {print $2}')"
+		# Mostrar gateway por defecto
+		echo -e "\033[1;31mGateway:\033[0m $(route -n get default | awk '/gateway/ {print $2}')"
 
-    # Esperar antes de refrescar
-    sleep 5
-  done
+		# Esperar antes de refrescar
+		sleep 5
+	done
 }
 
 # ____________________________________________________________
@@ -377,14 +373,14 @@ function xip {
 # ____________________________________________________________
 function xchis {
 
-  # Mostrar historial completo si no hay filtro
-  if [ -z "$1" ]; then
-    history
-  else
+	# Mostrar historial completo si no hay filtro
+	if [ -z "$1" ]; then
+		history
+	else
 
-    # Filtrar historial por patrón
-    history | grep -i --color=auto "$1"
-  fi
+		# Filtrar historial por patrón
+		history | grep -i --color=auto "$1"
+	fi
 }
 
 # ____________________________________________________________
@@ -393,18 +389,18 @@ function xchis {
 # ____________________________________________________________
 function xchx {
 
-  # Validar parámetro obligatorio
-  [[ -z "$1" ]] && echo "Uso: xchx <archivo>" && return 1
+	# Validar parámetro obligatorio
+	[[ -z "$1" ]] && echo "Uso: xchx <archivo>" && return 1
 
-  # Validar existencia del archivo
-  [[ ! -f "$1" ]] && echo "No existe: $1" && return 1
+	# Validar existencia del archivo
+	[[ ! -f "$1" ]] && echo "No existe: $1" && return 1
 
-  # Asignar permisos ejecutables
-  chmod +x "$1"
+	# Asignar permisos ejecutables
+	chmod +x "$1"
 
-  # Mostrar información final
-  ls -lah "$1"
-  pwd
+	# Mostrar información final
+	ls -lah "$1"
+	pwd
 }
 
 # ____________________________________________________________
@@ -413,24 +409,24 @@ function xchx {
 # ____________________________________________________________
 function xlogs {
 
-  # Parámetros
-  LOGFILE="$1"
-  PATTERN="$2"
+	# Parámetros
+	LOGFILE="$1"
+	PATTERN="$2"
 
-  # Validar archivo
-  if [[ ! -f "$LOGFILE" ]]; then
-    echo "Archivo no encontrado: $LOGFILE"
-    return 1
-  fi
+	# Validar archivo
+	if [[ ! -f "$LOGFILE" ]]; then
+		echo "Archivo no encontrado: $LOGFILE"
+		return 1
+	fi
 
-  # Mostrar últimas líneas si no hay filtro
-  if [[ -z "$PATTERN" ]]; then
-    tail -n 50 "$LOGFILE"
-  else
+	# Mostrar últimas líneas si no hay filtro
+	if [[ -z "$PATTERN" ]]; then
+		tail -n 50 "$LOGFILE"
+	else
 
-    # Filtrar contenido
-    grep -i --color=always "$PATTERN" "$LOGFILE" | less -R
-  fi
+		# Filtrar contenido
+		grep -i --color=always "$PATTERN" "$LOGFILE" | less -R
+	fi
 }
 
 # ____________________________________________________________
@@ -439,23 +435,23 @@ function xlogs {
 # ____________________________________________________________
 function xbrave {
 
-  # Validar URL
-  if [ -z "$1" ]; then
-    echo "Uso: xbrave <url>"
-    return 1
-  fi
+	# Validar URL
+	if [ -z "$1" ]; then
+		echo "Uso: xbrave <url>"
+		return 1
+	fi
 
-  local url="$1"
+	local url="$1"
 
-  # Agregar protocolo si falta
-  [[ ! "$url" =~ ^https?:// ]] && url="https://$url"
+	# Agregar protocolo si falta
+	[[ ! "$url" =~ ^https?:// ]] && url="https://$url"
 
-  # Abrir solo en macOS
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    open -a "Brave Browser" "$url"
-  else
-    echo "No soportado en este sistema"
-  fi
+	# Abrir solo en macOS
+	if [[ "$OSTYPE" == "darwin"* ]]; then
+		open -a "Brave Browser" "$url"
+	else
+		echo "No soportado en este sistema"
+	fi
 }
 
 # ____________________________________________________________
@@ -470,12 +466,12 @@ function xbrave {
 # ------------------------------------------------------------
 function xglason {
 
-  ASADMIN="/Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/bin/asadmin"
+	ASADMIN="/Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/bin/asadmin"
 
-  # Iniciar dominio si recibe parámetro 1
-  if [ "$1" == "1" ]; then
-    sh "$ASADMIN" start-domain
-  fi
+	# Iniciar dominio si recibe parámetro 1
+	if [ "$1" == "1" ]; then
+		sh "$ASADMIN" start-domain
+	fi
 }
 
 # ------------------------------------------------------------
@@ -485,12 +481,12 @@ function xglason {
 # ------------------------------------------------------------
 function xglasoff {
 
-  ASADMIN="/Users/carlonsocando/Downloads/glassfish7/glassfish8/glassfish/bin/asadmin"
+	ASADMIN="/Users/carlonsocando/Downloads/glassfish7/glassfish8/glassfish/bin/asadmin"
 
-  # Detener dominio si no recibe parámetros
-  if [ -z "$1" ]; then
-    sh "$ASADMIN" stop-domain
-  fi
+	# Detener dominio si no recibe parámetros
+	if [ -z "$1" ]; then
+		sh "$ASADMIN" stop-domain
+	fi
 }
 
 # ____________________________________________________________
@@ -499,8 +495,8 @@ function xglasoff {
 # ____________________________________________________________
 function xgit_all {
 
-  # Agregar cambios, commit y push
-  git add . && git commit -m "$1" && git push
+	# Agregar cambios, commit y push
+	git add . && git commit -m "$1" && git push
 }
 
 # ____________________________________________________________
@@ -509,30 +505,28 @@ function xgit_all {
 # ____________________________________________________________
 function xtar {
 
-  # Ruta origen
-  ORIGEN="$1"
+	# Ruta origen
+	ORIGEN="$1"
 
-  # Nombre del archivo comprimido
-  DESTINO="${1}.tar.gz"
+	# Nombre del archivo comprimido
+	DESTINO="${1}.tar.gz"
 
-  # Validar parámetro obligatorio
-  if [ -z "$ORIGEN" ]; then
-    echo "Uso: xtar <archivo|carpeta>"
-    return 1
-  fi
+	# Validar parámetro obligatorio
+	if [ -z "$ORIGEN" ]; then
+		echo "Uso: xtar <archivo|carpeta>"
+		return 1
+	fi
 
-  # Crear archivo tar.gz
-  tar -czvf "$DESTINO" "$ORIGEN"
+	# Crear archivo tar.gz
+	tar -czvf "$DESTINO" "$ORIGEN"
 
-  # Validar resultado
-  if [ $? -eq 0 ]; then
-    echo "✔ Creado: $DESTINO"
-  else
-    echo "❌ Error al crear"
-  fi
+	# Validar resultado
+	if [ $? -eq 0 ]; then
+		echo "✔ Creado: $DESTINO"
+	else
+		echo "❌ Error al crear"
+	fi
 }
-
-
 
 # ____________________________________________________________
 # NAVEGACIÓN DE PROYECTO
@@ -551,14 +545,14 @@ function xtar {
 # ------------------------------------------------------------
 function xcd_git {
 
-  # Cambiar al directorio del proyecto
-  cd "$WAR_1_0" || return 1
+	# Cambiar al directorio del proyecto
+	cd "$WAR_1_0" || return 1
 
-  # Mostrar contenido
-  ls -ha
+	# Mostrar contenido
+	ls -ha
 
-  # Mostrar ubicación actual
-  pwd
+	# Mostrar ubicación actual
+	pwd
 }
 
 # ------------------------------------------------------------
@@ -569,17 +563,17 @@ function xcd_git {
 # ------------------------------------------------------------
 function go_project {
 
-  # Mostrar mensaje interactivo
-  echo "$ENTER hacer cd ... \n" < /dev/tty
+	# Mostrar mensaje interactivo
+	echo -e "$ENTER hacer cd ... \n" </dev/tty
 
-  # Cambiar directorio
-  cd "$WAR_1_0" || return 1
+	# Cambiar directorio
+	cd "$WAR_1_0" || return 1
 
-  # Mostrar contenido
-  ls -ha
+	# Mostrar contenido
+	ls -ha
 
-  # Mostrar ruta
-  pwd
+	# Mostrar ruta
+	pwd
 }
 
 # ____________________________________________________________
@@ -594,11 +588,11 @@ function go_project {
 # ------------------------------------------------------------
 function build_project {
 
-  # Mensaje previo
-  echo "$ENTER package ... \n" < /dev/tty
+	# Mensaje previo
+	echo -e "$ENTER package ... \n" </dev/tty
 
-  # Compilar proyecto
-  mvn clean package -X
+	# Compilar proyecto
+	mvn clean package -X
 }
 
 # ____________________________________________________________
@@ -613,11 +607,11 @@ function build_project {
 # ------------------------------------------------------------
 function undeploy_project {
 
-  # Mensaje previo
-  echo "$ENTER undeploy ... \n" < /dev/tty
+	# Mensaje previo
+	echo -e "$ENTER undeploy ... \n" </dev/tty
 
-  # Ejecutar undeploy
-  "$ASADMIN" undeploy "$PROJECTO_SIN_EXTENCION"
+	# Ejecutar undeploy
+	"$ASADMIN" undeploy "$PROJECTO_SIN_EXTENCION"
 }
 
 # ------------------------------------------------------------
@@ -628,15 +622,15 @@ function undeploy_project {
 # ------------------------------------------------------------
 function deploy_project {
 
-  # Primer intento de deploy por nombre
-  echo "$ENTER deploy ... \n" < /dev/tty
-  "$ASADMIN" deploy "$PROJECTO_SIN_EXTENCION"
+	# Primer intento de deploy por nombre
+	echo -e "$ENTER deploy ... \n" </dev/tty
+	"$ASADMIN" deploy "$PROJECTO_SIN_EXTENCION"
 
-  # Deploy forzado desde WAR
-  echo "$ENTER deploy ... \n" < /dev/tty
-  "$ASADMIN" deploy \
-  --force=true \
-  "$TARGET/$PROJECTO_SIN_EXTENCION.$EXTENCION_WAR"
+	# Deploy forzado desde WAR
+	echo -e "$ENTER deploy ... \n" </dev/tty
+	"$ASADMIN" deploy \
+		--force=true \
+		"$TARGET/$PROJECTO_SIN_EXTENCION.$EXTENCION_WAR"
 }
 
 # ------------------------------------------------------------
@@ -646,11 +640,11 @@ function deploy_project {
 # ------------------------------------------------------------
 function remove_war {
 
-  # Mensaje previo
-  echo "$ENTER rm ... \n" < /dev/tty
+	# Mensaje previo
+	echo -e "$ENTER rm ... \n" </dev/tty
 
-  # Eliminar WAR
-  rm "$TARGET/$PROJECTO_SIN_EXTENCION.$EXTENCION_WAR"
+	# Eliminar WAR
+	rm "$TARGET/$PROJECTO_SIN_EXTENCION.$EXTENCION_WAR"
 }
 
 # ____________________________________________________________
@@ -669,30 +663,30 @@ function remove_war {
 # ------------------------------------------------------------
 function xsubir {
 
-  # Reiniciar GlassFish
-  xglasoff
-  xglason
+	# Reiniciar GlassFish
+	xglasoff
+	xglason
 
-  # Ir al proyecto
-  go_project
+	# Ir al proyecto
+	go_project
 
-  # Abrir carpeta target
-  open "$TARGET"
+	# Abrir carpeta target
+	open "$TARGET"
 
-  # Compilar
-  build_project
+	# Compilar
+	build_project
 
-  # Eliminar despliegue previo
-  undeploy_project
+	# Eliminar despliegue previo
+	undeploy_project
 
-  # Abrir consola GlassFish
-  open "$GLAS"
+	# Abrir consola GlassFish
+	open "$GLAS"
 
-  # Nuevo despliegue
-  deploy_project
+	# Nuevo despliegue
+	deploy_project
 
-  # Abrir consola nuevamente
-  open "$GLAS"
+	# Abrir consola nuevamente
+	open "$GLAS"
 }
 
 # ____________________________________________________________
@@ -706,23 +700,22 @@ function xsubir {
 #   - Pausa ejecución por segundos
 # ------------------------------------------------------------
 function xpausa {
-  # Validar parámetro
-  if [[ -z "$1" ]]; then
-    echo "Uso: echo <segundos>"
-    return 1
-  fi
+	# Validar parámetro
+	if [[ -z "$1" ]]; then
+		echo "Uso: echo <segundos>"
+		return 1
+	fi
 
-  # Validar entero
-  if ! [[ "$1" =~ ^[0-9]+$ ]]; then
-    echo "Error: debes pasar un número entero"
-    return 1
-  fi
+	# Validar entero
+	if ! [[ "$1" =~ ^[0-9]+$ ]]; then
+		echo "Error: debes pasar un número entero"
+		return 1
+	fi
 
-  # Ejecutar pausa
-  echo "⏸ Pausando $1 segundo(s)..."
-  sleep "$1"
+	# Ejecutar pausa
+	echo "⏸ Pausando $1 segundo(s)..."
+	sleep "$1"
 }
-
 
 # Autor: Carlos Ocando
 # Descripción:
@@ -735,31 +728,31 @@ function xpausa {
 
 function xgrepgpt {
 
-  # ------------------------------------------------------------
-  # Validación de parámetro
-  # ------------------------------------------------------------
-  if [[ -z "$1" ]]; then
-    echo "Uso: xgrepgpt <texto>"
-    return 1
-  fi
+	# ------------------------------------------------------------
+	# Validación de parámetro
+	# ------------------------------------------------------------
+	if [[ -z "$1" ]]; then
+		echo "Uso: xgrepgpt <texto>"
+		return 1
+	fi
 
-  # ------------------------------------------------------------
-  # Variables
-  # ------------------------------------------------------------
-  SEARCH="$1"
+	# ------------------------------------------------------------
+	# Variables
+	# ------------------------------------------------------------
+	SEARCH="$1"
 
-  echo "======================================"
-  echo "🔎 Buscando: $SEARCH"
-  echo "======================================"
+	echo "======================================"
+	echo "🔎 Buscando: $SEARCH"
+	echo "======================================"
 
-  # ------------------------------------------------------------
-  # Búsqueda
-  # ------------------------------------------------------------
-  sudo grep -rin --color=always \
-  --binary-files=without-match \
-  --exclude-dir=node_modules \
-  --exclude-dir=.git \
-  "$SEARCH" .
+	# ------------------------------------------------------------
+	# Búsqueda
+	# ------------------------------------------------------------
+	sudo grep -rin --color=always \
+		--binary-files=without-match \
+		--exclude-dir=node_modules \
+		--exclude-dir=.git \
+		"$SEARCH" .
 }
 
 # ____________________________________________________________
@@ -776,31 +769,31 @@ function xgrepgpt {
 # ------------------------------------------------------------
 function xgrep {
 
-  echo "**** Procesando ..."
+	echo "**** Procesando ..."
 
-  # Buscar coincidencias
-  sudo grep -Rni "$1" . 2>/dev/null > /tmp/xgrep.txt
+	# Buscar coincidencias
+	sudo grep -Rni "$1" . 2>/dev/null >/tmp/xgrep.txt
 
-  # Separador
-  echo "\n-----------------------------------------------------------" >> /tmp/xgrep.txt
+	# Separador
+	echo -e "\n-----------------------------------------------------------" >>/tmp/xgrep.txt
 
-  # Listado de archivos
-  ls >> /tmp/xgrep.txt
+	# Listado de archivos
+	ls >>/tmp/xgrep.txt
 
-  # Separador
-  echo "-------------------------------------------------------------" >> /tmp/xgrep.txt
+	# Separador
+	echo "-------------------------------------------------------------" >>/tmp/xgrep.txt
 
-  # Ruta actual
-  pwd >> /tmp/xgrep.txt
+	# Ruta actual
+	pwd >>/tmp/xgrep.txt
 
-  # Separador
-  echo "-------------------------------------------------------------" >> /tmp/xgrep.txt
+	# Separador
+	echo "-------------------------------------------------------------" >>/tmp/xgrep.txt
 
-  # Finalización
-  echo "**** Proceso finalizado ..." >> /tmp/xgrep.txt
+	# Finalización
+	echo "**** Proceso finalizado ..." >>/tmp/xgrep.txt
 
-  # Abrir resultados
-  subl /tmp/xgrep.txt
+	# Abrir resultados
+	subl /tmp/xgrep.txt
 }
 
 # ____________________________________________________________
@@ -823,17 +816,17 @@ function xgrep {
 # ------------------------------------------------------------
 function xcompare {
 
-  # Comparar ambos parámetros
-  if [ "$1" = "$2" ]; then
+	# Comparar ambos parámetros
+	if [ "$1" = "$2" ]; then
 
-    # Coincidencia exacta
-    echo "**** Son iguales"
+		# Coincidencia exacta
+		echo "**** Son iguales"
 
-  else
+	else
 
-    # Valores distintos
-    echo "**** Son diferentes"
-  fi
+		# Valores distintos
+		echo "**** Son diferentes"
+	fi
 }
 
 # ------------------------------------------------------------
@@ -846,44 +839,44 @@ function xcompare {
 # Requiere:
 #   - zenity instalado
 # ------------------------------------------------------------
-function xcomparex {
+function xcompare {
 
-  # Solicitar primer valor
-  valor1=$(zenity --entry \
-  --title="Comparación" \
-  --text="Ingrese el primer valor:" 2>/dev/null) || return 1
+	# Solicitar primer valor
+	valor1=$(zenity --entry \
+		--title="Comparación" \
+		--text="Ingrese el primer valor:" 2>/dev/null) || return 1
 
-  # Solicitar segundo valor
-  valor2=$(zenity --entry \
-  --title="Comparación" \
-  --text="Ingrese el segundo valor:" 2>/dev/null) || return 1
+	# Solicitar segundo valor
+	valor2=$(zenity --entry \
+		--title="Comparación" \
+		--text="Ingrese el segundo valor:" 2>/dev/null) || return 1
 
-  # Validar campos obligatorios
-  if [ -z "$valor1" ] || [ -z "$valor2" ]; then
+	# Validar campos obligatorios
+	if [ -z "$valor1" ] || [ -z "$valor2" ]; then
 
-    # Advertencia por campos vacíos
-    zenity --warning \
-    --title="Error" \
-    --text="No puedes dejar campos vacíos" 2>/dev/null
+		# Advertencia por campos vacíos
+		zenity --warning \
+			--title="Error" \
+			--text="No puedes dejar campos vacíos" 2>/dev/null
 
-    return 1
-  fi
+		return 1
+	fi
 
-  # Comparar resultados
-  if [ "$valor1" = "$valor2" ]; then
+	# Comparar resultados
+	if [ "$valor1" = "$valor2" ]; then
 
-    # Resultado positivo
-    zenity --info \
-    --title="Resultado" \
-    --text="Son iguales" 2>/dev/null
+		# Resultado positivo
+		zenity --info \
+			--title="Resultado" \
+			--text="Son iguales" 2>/dev/null
 
-  else
+	else
 
-    # Resultado negativo
-    zenity --error \
-    --title="Resultado" \
-    --text="Son diferentes" 2>/dev/null
-  fi
+		# Resultado negativo
+		zenity --error \
+			--title="Resultado" \
+			--text="Son diferentes" 2>/dev/null
+	fi
 }
 
 # =========================================================
@@ -901,76 +894,75 @@ function xcomparex {
 
 function xinsjav {
 
-  # set -e
+	# set -e
 
-  # -------------------------
-  # Validación de parámetros
-  # -------------------------
-  if [ -z "$1" ]; then
-    echo "❌ Error: Debes indicar la versión de Java."
-    echo ""
-    echo "Uso:"
-    echo "  ./install_java.sh <version>"
-    echo ""
-    echo "Ejemplo:"
-    echo "  ./install_java.sh 17"
-    echo ""
-    echo "Esto instalará OpenJDK 17 y configurará JAVA_HOME."
-    return 1
-  fi
+	# -------------------------
+	# Validación de parámetros
+	# -------------------------
+	if [ -z "$1" ]; then
+		echo "❌ Error: Debes indicar la versión de Java."
+		echo ""
+		echo "Uso:"
+		echo "  ./install_java.sh <version>"
+		echo ""
+		echo "Ejemplo:"
+		echo "  ./install_java.sh 17"
+		echo ""
+		echo "Esto instalará OpenJDK 17 y configurará JAVA_HOME."
+		return 1
+	fi
 
-  JAVAVER="$1"
+	JAVAVER="$1"
 
-  echo "🔧 Instalando OpenJDK $JAVAVER ..."
+	echo "🔧 Instalando OpenJDK $JAVAVER ..."
 
-  # -------------------------
-  # Verificar brew
-  # -------------------------
-  if ! command -v brew >/dev/null 2>&1; then
-    echo "❌ Homebrew no está instalado."
-    echo "Instálalo desde: https://brew.sh"
-    return 1
-  fi
+	# -------------------------
+	# Verificar brew
+	# -------------------------
+	if ! command -v brew >/dev/null 2>&1; then
+		echo "❌ Homebrew no está instalado."
+		echo "Instálalo desde: https://brew.sh"
+		return 1
+	fi
 
-  # -------------------------
-  # Instalar OpenJDK
-  # -------------------------
-  if [ "$2" = "r" ]; then
-    echo "**** Re-instalando ..."
-    brew reinstall openjdk@"$JAVAVER"
-  else
-    echo "**** Instalando ..."
-    brew install openjdk@"$JAVAVER"
-  fi
+	# -------------------------
+	# Instalar OpenJDK
+	# -------------------------
+	if [ "$2" = "r" ]; then
+		echo "**** Re-instalando ..."
+		brew reinstall openjdk@"$JAVAVER"
+	else
+		echo "**** Instalando ..."
+		brew install openjdk@"$JAVAVER"
+	fi
 
+	# -------------------------
+	# Configurar JAVA_HOME
+	# -------------------------
+	echo "⚙️ Configurando JAVA_HOME en ~/.zshrc ..."
 
-  # -------------------------
-  # Configurar JAVA_HOME
-  # -------------------------
-  echo "⚙️ Configurando JAVA_HOME en ~/.zshrc ..."
+	# Evitar duplicados
+	if ! grep -q "java_home -v $JAVAVER" ~/.zshrc; then
+		echo "" >>~/.zshrc
+		echo "# Java $JAVAVER" >>~/.zshrc
+		echo "export JAVA_HOME=\$(/usr/libexec/java_home -v $JAVAVER)" >>~/.zshrc
+		echo 'export PATH=$JAVA_HOME/bin:$PATH' >>~/.zshrc
+	fi
 
-  # Evitar duplicados
-  if ! grep -q "java_home -v $JAVAVER" ~/.zshrc; then
-    echo "" >> ~/.zshrc
-    echo "# Java $JAVAVER" >> ~/.zshrc
-    echo "export JAVA_HOME=\$(/usr/libexec/java_home -v $JAVAVER)" >> ~/.zshrc
-    echo 'export PATH=$JAVA_HOME/bin:$PATH' >> ~/.zshrc
-  fi
+	# -------------------------
+	# Aplicar cambios
+	# -------------------------
+	source ~/.zshrc
 
-  # -------------------------
-  # Aplicar cambios
-  # -------------------------
-  source ~/.zshrc
+	# -------------------------
+	# Verificación
+	# -------------------------
+	echo "✅ Java instalado:"
+	java -version
 
-  # -------------------------
-  # Verificación
-  # -------------------------
-  echo "✅ Java instalado:"
-  java -version
-
-  echo ""
-  echo "🎯 JAVA_HOME actual:"
-  echo "$JAVA_HOME"
+	echo ""
+	echo "🎯 JAVA_HOME actual:"
+	echo "$JAVA_HOME"
 
 }
 
@@ -993,80 +985,80 @@ function xinsjav {
 # =========================================================
 function xunsjav {
 
-  # -------------------------
-  # Validación de parámetros
-  # -------------------------
-  if [ -z "$1" ] || [ -z "$2" ]; then
-    echo "❌ Debes indicar dos versiones de Java a eliminar."
-    echo ""
-    echo "Uso:"
-    echo "  xcleanjava <version1> <version2>"
-    echo ""
-    echo "Ejemplo:"
-    echo "  xcleanjava 21 17"
-    echo ""
-    echo "Esto eliminará:"
-    echo "  - openjdk@<version1> (forzado)"
-    echo "  - openjdk@<version2>"
-    echo "  - caches y restos de instalación"
-    return 0
-  fi
+	# -------------------------
+	# Validación de parámetros
+	# -------------------------
+	if [ -z "$1" ] || [ -z "$2" ]; then
+		echo "❌ Debes indicar dos versiones de Java a eliminar."
+		echo ""
+		echo "Uso:"
+		echo "  xcleanjava <version1> <version2>"
+		echo ""
+		echo "Ejemplo:"
+		echo "  xcleanjava 21 17"
+		echo ""
+		echo "Esto eliminará:"
+		echo "  - openjdk@<version1> (forzado)"
+		echo "  - openjdk@<version2>"
+		echo "  - caches y restos de instalación"
+		return 0
+	fi
 
-  JDK1="$1"
-  JDK2="$2"
+	JDK1="$1"
+	JDK2="$2"
 
-  echo "🔍 JDKs instalados:"
-  brew list | grep openjdk || true
-  echo ""
+	echo "🔍 JDKs instalados:"
+	brew list | grep openjdk || true
+	echo ""
 
-  # -------------------------
-  # Confirmación
-  # -------------------------
-  read "?⚠️ Esto eliminará versiones de Java. ¿Continuar? (y/N): " confirm
-  if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
-    echo "****❌Operación cancelada ..."
-    return 0
-  fi
+	# -------------------------
+	# Confirmación
+	# -------------------------
+	read "?⚠️ Esto eliminará versiones de Java. ¿Continuar? (y/N): " confirm
+	if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
+		echo "****❌Operación cancelada ..."
+		return 0
+	fi
 
-  # -------------------------
-  # Desinstalar JDKs
-  # -------------------------
-  echo "**** Eliminando openjdk@$JDK1 (forzado)..."
-  brew uninstall --ignore-dependencies openjdk@"$JDK1" || true
+	# -------------------------
+	# Desinstalar JDKs
+	# -------------------------
+	echo "**** Eliminando openjdk@$JDK1 (forzado)..."
+	brew uninstall --ignore-dependencies openjdk@"$JDK1" || true
 
-  echo "🗑**** Eliminando openjdk@$JDK2 ..."
-  brew uninstall openjdk@"$JDK2" || true
+	echo "🗑**** Eliminando openjdk@$JDK2 ..."
+	brew uninstall openjdk@"$JDK2" || true
 
-  echo "****🧹Limpieza de brew..."
-  brew cleanup
+	echo "****🧹Limpieza de brew..."
+	brew cleanup
 
-  # -------------------------
-  # Limpieza manual
-  # -------------------------
-  echo "🧹**** Eliminando restos ..."
+	# -------------------------
+	# Limpieza manual
+	# -------------------------
+	echo "🧹**** Eliminando restos ..."
 
-  rm -rf ~/.java
-  rm -rf ~/.jdk
+	rm -rf ~/.java
+	rm -rf ~/.jdk
 
-  rm -rf /opt/homebrew/opt/openjdk*
-  rm -rf /opt/homebrew/Cellar/openjdk*
-  rm -rf /opt/homebrew/Cellar/openjdk@*
+	rm -rf /opt/homebrew/opt/openjdk*
+	rm -rf /opt/homebrew/Cellar/openjdk*
+	rm -rf /opt/homebrew/Cellar/openjdk@*
 
-  rm -f /opt/homebrew/bin/java
-  rm -f /opt/homebrew/bin/javac
+	rm -f /opt/homebrew/bin/java
+	rm -f /opt/homebrew/bin/javac
 
-  rm -rf ~/Library/Caches/Homebrew/downloads/*openjdk*
+	rm -rf ~/Library/Caches/Homebrew/downloads/*openjdk*
 
-  echo "🧹**** Eliminando plugin antiguo (requiere sudo) ..."
-  sudo rm -rf "/Library/Internet Plug-Ins/JavaAppletPlugin.plugin" 2>/dev/null || true
+	echo "🧹**** Eliminando plugin antiguo (requiere sudo) ..."
+	sudo rm -rf "/Library/Internet Plug-Ins/JavaAppletPlugin.plugin" 2>/dev/null || true
 
-  sudo ln -sfn /opt/homebrew/opt/openjdk@"$1"/libexec/openjdk.jdk \
-  /Library/Java/JavaVirtualMachines/openjdk-"$1".jdk
+	sudo ln -sfn /opt/homebrew/opt/openjdk@"$1"/libexec/openjdk.jdk \
+		/Library/Java/JavaVirtualMachines/openjdk-"$1".jdk
 
-  java --version
+	java --version
 
-  echo "\n-------------------------------------------------------------------------------------"
-  echo "**** Limpieza completada. Verifica con 'java -version' y 'brew list | grep openjdk'. .."
+	echo -e "\n-------------------------------------------------------------------------------------"
+	echo "**** Limpieza completada. Verifica con 'java -version' y 'brew list | grep openjdk'. .."
 }
 
 # =========================================================
@@ -1086,22 +1078,21 @@ function xunsjav {
 
 function xuniglas {
 
+	echo "⚠️ Se eliminarán todas las carpetas ~/glassfish*"
+	read "?¿Estás seguro? (y/N): " confirm
 
-  echo "⚠️ Se eliminarán todas las carpetas ~/glassfish*"
-  read "?¿Estás seguro? (y/N): " confirm
+	if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
+		echo "❌ Operación cancelada"
+		return 0
+	fi
 
-  if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
-    echo "❌ Operación cancelada"
-    return 0
-  fi
+	rm -rf ~/glassfish*
 
-  rm -rf ~/glassfish*
-
-  echo "✅ GlassFish eliminado correctamente"
+	echo "✅ GlassFish eliminado correctamente"
 }
 
 function xkkill {
-  lsof -P | grep -i ':$1' | awk '{print $2}'| xargs kill -9
+	lsof -P | grep -i ':$1' | awk '{print $2}' | xargs kill -9
 }
 
 # =========================================================
@@ -1122,27 +1113,27 @@ function xkkill {
 
 function xkill {
 
-  # Si no recibe parámetros, muestra ayuda y sale
-  if [ -z "$1" ]; then
-    echo "======================================"
-    echo "Uso: xkill <puerto>"
-    echo "Ejemplo: xkill 8080"
-    echo "======================================"
-    return 1
-  fi
+	# Si no recibe parámetros, muestra ayuda y sale
+	if [ -z "$1" ]; then
+		echo "======================================"
+		echo "Uso: xkill <puerto>"
+		echo "Ejemplo: xkill 8080"
+		echo "======================================"
+		return 1
+	fi
 
-  # Obtiene los PID asociados al puerto indicado
-  pids=$(lsof -P | grep -i ":$1" | awk '{print $2}')
+	# Obtiene los PID asociados al puerto indicado
+	pids=$(lsof -P | grep -i ":$1" | awk '{print $2}')
 
-  # Si no hay procesos, informa y sale
-  if [ -z "$pids" ]; then
-    echo "No hay procesos usando el puerto $1"
-    return 0
-  fi
+	# Si no hay procesos, informa y sale
+	if [ -z "$pids" ]; then
+		echo "No hay procesos usando el puerto $1"
+		return 0
+	fi
 
-  # Muestra y termina los procesos encontrados
-  echo "Matando procesos en puerto $1: $pids"
-  echo "$pids" | xargs kill -9
+	# Muestra y termina los procesos encontrados
+	echo "Matando procesos en puerto $1: $pids"
+	echo "$pids" | xargs kill -9
 }
 
 # =========================================================
@@ -1161,29 +1152,29 @@ function xkill {
 
 function xcdlogs {
 
-  # Si se intenta pasar algún parámetro, muestra ayuda y sale
-  if [ "$#" -ne 0 ]; then
-    echo "======================================"
-    echo "Uso: xcdlogs"
-    echo "Este comando NO recibe parámetros"
-    echo "Ejemplo:"
-    echo "  xcdlogs"
-    echo "======================================"
-    return 1
-  fi
+	# Si se intenta pasar algún parámetro, muestra ayuda y sale
+	if [ "$#" -ne 0 ]; then
+		echo "======================================"
+		echo "Uso: xcdlogs"
+		echo "Este comando NO recibe parámetros"
+		echo "Ejemplo:"
+		echo "  xcdlogs"
+		echo "======================================"
+		return 1
+	fi
 
-  # Directorio destino
-  DIR="/Users/carlosocando/Downloads/glassfish7/glassfish/domains/domain1/applications/glassfish/domains/domain1/logs"
+	# Directorio destino
+	DIR="/Users/carlosocando/Downloads/glassfish7/glassfish/domains/domain1/applications/glassfish/domains/domain1/logs"
 
-  # Validación de existencia del directorio
-  if [ ! -d "$DIR" ]; then
-    echo "Error: no existe el directorio:"
-    echo "$DIR"
-    return 1
-  fi
+	# Validación de existencia del directorio
+	if [ ! -d "$DIR" ]; then
+		echo "Error: no existe el directorio:"
+		echo "$DIR"
+		return 1
+	fi
 
-  # Cambio de directorio
-  cd "$DIR" || return
+	# Cambio de directorio
+	cd "$DIR" || return
 }
 
 # =========================================================
@@ -1201,31 +1192,30 @@ function xcdlogs {
 
 function xcdconf {
 
-  # No acepta parámetros
-  if [ "$#" -ne 0 ]; then
-    echo "======================================"
-    echo "Uso: xcdconf"
-    echo "Este comando NO recibe parámetros"
-    echo "Ejemplo:"
-    echo "  xcdconf"
-    echo "======================================"
-    return 1
-  fi
+	# No acepta parámetros
+	if [ "$#" -ne 0 ]; then
+		echo "======================================"
+		echo "Uso: xcdconf"
+		echo "Este comando NO recibe parámetros"
+		echo "Ejemplo:"
+		echo "  xcdconf"
+		echo "======================================"
+		return 1
+	fi
 
-  # Directorio de configuración de GlassFish
-  DIR="/Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/domains/domain1/config"
+	# Directorio de configuración de GlassFish
+	DIR="/Users/carlosocando/Downloads/glassfish7/glassfish8/glassfish/domains/domain1/config"
 
-  # Validación de existencia del directorio
-  if [ ! -d "$DIR" ]; then
-    echo "Error: no existe el directorio:"
-    echo "$DIR"
-    return 1
-  fi
+	# Validación de existencia del directorio
+	if [ ! -d "$DIR" ]; then
+		echo "Error: no existe el directorio:"
+		echo "$DIR"
+		return 1
+	fi
 
-  # Cambio de directorio
-  cd "$DIR" || return
+	# Cambio de directorio
+	cd "$DIR" || return
 }
-
 
 # ============================================================
 # FUNCIÓN: xclose
@@ -1238,32 +1228,31 @@ function xcdconf {
 
 function xclose {
 
-  # Validación: debe venir el nombre del proceso
-  if [ -z "$1" ]; then
-    echo "Uso: xclose nombre_app"
-    echo ""
-    echo "Ejemplos:"
-    echo "  xclose code"
-    echo "  xclose java"
-    echo "  xclose chrome"
-    return 1
-  fi
+	# Validación: debe venir el nombre del proceso
+	if [ -z "$1" ]; then
+		echo "Uso: xclose nombre_app"
+		echo ""
+		echo "Ejemplos:"
+		echo "  xclose code"
+		echo "  xclose java"
+		echo "  xclose chrome"
+		return 1
+	fi
 
-  local app="$1"
+	local app="$1"
 
-  echo "🔎 Buscando procesos de: $app"
+	echo "🔎 Buscando procesos de: $app"
 
-  # Obtener PIDs
-  local pids=$(pgrep -f "$app")
+	# Obtener PIDs
+	local pids=$(pgrep -f "$app")
 
-  if [ -z "$pids" ]; then
-    echo "⚠️ No se encontraron procesos para: $app"
-    return 1
-  fi
-  echo "**** Proceso terminado ... "
+	if [ -z "$pids" ]; then
+		echo "⚠️ No se encontraron procesos para: $app"
+		return 1
+	fi
+	echo "**** Proceso terminado ... "
 
 }
-
 
 # ============================================================
 # FUNCIÓN: XGITALL
@@ -1285,139 +1274,137 @@ function xclose {
 
 function xgitall {
 
-  # --------------------------------------------------------
-  # Validar parámetro obligatorio
-  # --------------------------------------------------------
-  # if [ -z "$1" ]; then
-  #   echo "======================================"
-  #   echo "USO:"
-  #   echo '  xgitall "mensaje del commit"'
-  #   echo ""
-  #   echo "Esta función ejecuta:"
-  #   echo "  git add ."
-  #   echo '  git commit -m "mensaje"'
-  #   echo "  git push"
-  #   echo "  git status"
-  #   echo "  git log -1"
-  #   echo "  git branch -vv"
-  #   echo "======================================"
-  #   return 1
-  # fi
+	# --------------------------------------------------------
+	# Validar parámetro obligatorio
+	# --------------------------------------------------------
+	# if [ -z "$1" ]; then
+	#   echo "======================================"
+	#   echo "USO:"
+	#   echo '  xgitall "mensaje del commit"'
+	#   echo ""
+	#   echo "Esta función ejecuta:"
+	#   echo "  git add ."
+	#   echo '  git commit -m "mensaje"'
+	#   echo "  git push"
+	#   echo "  git status"
+	#   echo "  git log -1"
+	#   echo "  git branch -vv"
+	#   echo "======================================"
+	#   return 1
+	# fi
 
-# ============================================================
-# SELECCIÓN DE RESPALDO (y/n)
-# ============================================================
-echo "========================================="
-echo "¿Desea enviar respaldo a Google Drive? (y/n)"
-echo "Si responde 'n', continuará con respaldo Git."
-echo "========================================="
+	# ============================================================
+	# SELECCIÓN DE RESPALDO (y/n)
+	# ============================================================
+	echo "========================================="
+	echo "¿Desea enviar respaldo a Google Drive? (y/n)"
+	echo "Si responde 'n', continuará con respaldo Git."
+	echo "========================================="
 
-read  "RESPALDO?Ingrese opción [y/n]: " 
+	read "RESPALDO?Ingrese opción [y/n]: "
 
-# Normalizar entrada
-RESPALDO=$(echo "$RESPALDO" | tr '[:upper:]' '[:lower:]')
+	# Normalizar entrada
+	RESPALDO=$(echo "$RESPALDO" | tr '[:upper:]' '[:lower:]')
 
-# ============================================================
-# CONSTANTES
-# ============================================================
-# ============================================================
-# RESPALDO MÚLTIPLE A GOOGLE DRIVE
-# ============================================================
+	# ============================================================
+	# CONSTANTES
+	# ============================================================
+	# ============================================================
+	# RESPALDO MÚLTIPLE A GOOGLE DRIVE
+	# ============================================================
 
-REMOTO="gdrive"
-CARPETA_REMOTA="/todo_git"
+	REMOTO="gdrive"
+	CARPETA_REMOTA="/todo_git"
 
-ARCHIVO_LOCAL1="$HOME/.zxfunction"
-ARCHIVO_LOCAL2="$HOME/.zxalias"
-ARCHIVO_LOCAL3="$HOME/.zshrc"
-ARCHIVO_LOCAL4="/Users/carlosocando/para_git"
+	ARCHIVO_LOCAL1="$HOME/.zxfunction"
+	ARCHIVO_LOCAL2="$HOME/.zxalias"
+	ARCHIVO_LOCAL3="$HOME/.zshrc"
+	ARCHIVO_LOCAL4="/Users/carlosocando/para_git"
 
-# ------------------------------------------------------------
-# LISTA DE ARCHIVOS
-# ------------------------------------------------------------
-ARCHIVOS=(
-  "$ARCHIVO_LOCAL1"
-  "$ARCHIVO_LOCAL2"
-  "$ARCHIVO_LOCAL3"
-  "$ARCHIVO_LOCAL4"
-)
+	# ------------------------------------------------------------
+	# LISTA DE ARCHIVOS
+	# ------------------------------------------------------------
+	ARCHIVOS=(
+		"$ARCHIVO_LOCAL1"
+		"$ARCHIVO_LOCAL2"
+		"$ARCHIVO_LOCAL3"
+		"$ARCHIVO_LOCAL4"
+	)
 
-# ------------------------------------------------------------
-# RECORRER Y SUBIR CADA ARCHIVO
-# ------------------------------------------------------------
-for ARCHIVO in "${ARCHIVOS[@]}"; do
+	# ------------------------------------------------------------
+	# RECORRER Y SUBIR CADA ARCHIVO
+	# ------------------------------------------------------------
+	for ARCHIVO in "${ARCHIVOS[@]}"; do
 
-  # Validar existencia
-  if [[ ! -f "$ARCHIVO" ]]; then
-    echo "❌ No existe: $ARCHIVO"
-    continue
-  fi
+		# Validar existencia
+		if [[ ! -f "$ARCHIVO" ]]; then
+			echo "❌ No existe: $ARCHIVO"
+			continue
+		fi
 
-  echo "========================================="
-  echo "📤 Subiendo: $ARCHIVO"
-  echo "========================================="
+		echo "========================================="
+		echo "📤 Subiendo: $ARCHIVO"
+		echo "========================================="
 
-  rclone copy "$ARCHIVO" "$REMOTO":"$CARPETA_REMOTA" \
-    -P \
-    --ignore-times \
-    --progress
+		rclone copy "$ARCHIVO" "$REMOTO":"$CARPETA_REMOTA" \
+			-P \
+			--ignore-times \
+			--progress
 
-  # Validar resultado
-  if [[ $? -eq 0 ]]; then
-    echo "✅ Subida completada: $ARCHIVO"
-  else
-    echo "❌ Error al subir: $ARCHIVO"
-  fi
-  echo "Conectar con la pagina de Google Drive para verificar el respaldo ..."
-  xpausa  5 
- open https://drive.google.com/drive/u/1/my-drive
+		# Validar resultado
+		if [[ $? -eq 0 ]]; then
+			echo "✅ Subida completada: $ARCHIVO"
+		else
+			echo "❌ Error al subir: $ARCHIVO"
+		fi
+		echo "Conectar con la pagina de Google Drive para verificar el respaldo ..."
+		xpausa 5
+		open https://drive.google.com/drive/u/1/my-drive
 
-done
+	done
 
-echo "========================================="
-echo "🚀 Respaldo finalizado."
-echo "========================================="
+	echo "========================================="
+	echo "🚀 Respaldo finalizado."
+	echo "========================================="
 
+	echo -e "\nEjecutando respaldo para Git ...\n"
 
-  echo "\nEjecutando respaldo para Git ...\n"
+	# --------------------------------------------------------
+	# Agregar todos los cambios al staging
+	# --------------------------------------------------------
+	git add . &&
 
-  # --------------------------------------------------------
-  # Agregar todos los cambios al staging
-  # --------------------------------------------------------
-  git add . && \
+		# --------------------------------------------------------
+		# Crear commit con mensaje
+		# --------------------------------------------------------
+		git commit -m "${1:-Actualización ...}" &&
 
-  # --------------------------------------------------------
-  # Crear commit con mensaje
-  # --------------------------------------------------------
-  git commit -m "${1:-Actualización ...}" && \
+		# --------------------------------------------------------
+		# Subir cambios al remoto
+		# --------------------------------------------------------
+		git push &&
 
-  # --------------------------------------------------------
-  # Subir cambios al remoto
-  # --------------------------------------------------------
-  git push  && \
+		# --------------------------------------------------------
+		# Mostrar estado actual
+		# --------------------------------------------------------
+		git status &&
 
-  # --------------------------------------------------------
-  # Mostrar estado actual
-  # --------------------------------------------------------
-  git status && \
+		# --------------------------------------------------------
+		# Mostrar último commit
+		# --------------------------------------------------------
+		git log -1 &&
 
-  # --------------------------------------------------------
-  # Mostrar último commit
-  # --------------------------------------------------------
-  git log -1 && \
+		# --------------------------------------------------------
+		# Mostrar rama actual con tracking
+		# --------------------------------------------------------
+		echo -e "\n**** Información de ramas ...."
+	echo "--------------------------------"
+	git branch -vv
+	echo -e "-------------------------------\n"
 
-  # --------------------------------------------------------
-  # Mostrar rama actual con tracking
-  # --------------------------------------------------------
-  
-  echo "\n**** Información de ramas ...."
-  echo "--------------------------------"
-  git branch -vv
-  echo "-------------------------------\n"
-
-  xpausa 10
-  open "https://github.com/cocandoazuaje-archf/todo_git"   
-  echo "\n**** Proceso de git completo ..."
+	xpausa 10
+	open "https://github.com/cocandoazuaje-archf/todo_git"
+	echo -e "\n**** Proceso de git completo ..."
 
 }
 
@@ -1434,23 +1421,22 @@ echo "========================================="
 
 function xread {
 
-  read "confirm? \nPresione ENTER para continuar con $1 ..."
+	read -e "confirm? \nPresione ENTER para continuar con $1 ..."
 }
 
 function xkeepall {
-  xread "el siguiente paso para alias"
-  xkeepa
-  xread "el siguiente paso para funciones"
-  xkeepf
-  xread "el siguiente paso para sustituciones de texto"
-  xkeeps
-  xread "el siguiente paso para git"
-  xkeepg
-  xread "el siguiente paso para zshrc"
-  xkeepz
+	xread "el siguiente paso para alias"
+	xkeepa
+	xread "el siguiente paso para funciones"
+	xkeepf
+	xread "el siguiente paso para sustituciones de texto"
+	xkeeps
+	xread "el siguiente paso para git"
+	xkeepg
+	xread "el siguiente paso para zshrc"
+	xkeepz
 
 }
-
 
 # ____________________________________________________________
 # GLASSFISH BUILD + DEPLOY
@@ -1476,16 +1462,16 @@ function xkeepall {
 # ------------------------------------------------------------
 function xxlsglas {
 
-  # Limpiar caché principal de Brave
-  rm -rf ~/Library/Caches/BraveSoftware/Brave-Browser/*
+	# Limpiar caché principal de Brave
+	rm -rf ~/Library/Caches/BraveSoftware/Brave-Browser/*
 
-  # Limpiar caché de perfil por defecto
-  rm -rf ~/Library/Application\ Support/BraveSoftware/Brave-Browser/Default/Cache/*
+	# Limpiar caché de perfil por defecto
+	rm -rf ~/Library/Application\ Support/BraveSoftware/Brave-Browser/Default/Cache/*
 
-  # Compilar proyecto y desplegar
-  mvn clean package \
-  && /Users/carlosocando/Downloads/glassfish7/glassfish/domains/domain1/bin/asadmin deploy --force target/"$1" \
-  && open http://www.localhost:4848/common/index.jsf
+	# Compilar proyecto y desplegar
+	mvn clean package &&
+		/Users/carlosocando/Downloads/glassfish7/glassfish/domains/domain1/bin/asadmin deploy --force target/"$1" &&
+		open http://www.localhost:4848/common/index.jsf
 }
 
 # ____________________________________________________________
@@ -1505,16 +1491,15 @@ function xxlsglas {
 # ------------------------------------------------------------
 function xcd {
 
-  # Cambiar directorio y guardar historial
-  pushd "$1"
+	# Cambiar directorio y guardar historial
+	pushd "$1"
 
-  # Listar contenido
-  ll
+	# Listar contenido
+	ll
 
-  # Mostrar ubicación actual
-  pwd
+	# Mostrar ubicación actual
+	pwd
 }
-
 
 # ============================================================
 # FUNCIÓN: xdif
@@ -1531,39 +1516,38 @@ function xcd {
 
 function xdif {
 
-  # Validar cantidad de parámetros
-  if [ $# -ne 2 ]; then
-    echo "Uso: xdif <archivo1> <archivo2>"
-    echo "Ejemplo: xdif cp_remote.sh cp_remoto.sh"
-    return 1
-  fi
+	# Validar cantidad de parámetros
+	if [ $# -ne 2 ]; then
+		echo "Uso: xdif <archivo1> <archivo2>"
+		echo "Ejemplo: xdif cp_remote.sh cp_remoto.sh"
+		return 1
+	fi
 
-  # Variables
-  local ARCHIVO1="$1"
-  local ARCHIVO2="$2"
-  local SALIDA="/tmp/xdif.txt"
+	# Variables
+	local ARCHIVO1="$1"
+	local ARCHIVO2="$2"
+	local SALIDA="/tmp/xdif.txt"
 
-  # Validar existencia
-  if [ ! -f "$ARCHIVO1" ]; then
-    echo "Error: No existe '$ARCHIVO1'"
-    return 1
-  fi
+	# Validar existencia
+	if [ ! -f "$ARCHIVO1" ]; then
+		echo "Error: No existe '$ARCHIVO1'"
+		return 1
+	fi
 
-  if [ ! -f "$ARCHIVO2" ]; then
-    echo "Error: No existe '$ARCHIVO2'"
-    return 1
-  fi
+	if [ ! -f "$ARCHIVO2" ]; then
+		echo "Error: No existe '$ARCHIVO2'"
+		return 1
+	fi
 
-  # Ejecutar diff
-  diff -u "$ARCHIVO1" "$ARCHIVO2" > "$SALIDA"
+	# Ejecutar diff
+	diff -u "$ARCHIVO1" "$ARCHIVO2" >"$SALIDA"
 
-  # Confirmar resultado
-  echo "Diff guardado en: $SALIDA"
+	# Confirmar resultado
+	echo "Diff guardado en: $SALIDA"
 
-  # Abrir en Sublime Text
-  subl "$SALIDA"
+	# Abrir en Sublime Text
+	subl "$SALIDA"
 }
-
 
 # ============================================================
 # FUNCIÓN: xdictado
@@ -1576,16 +1560,14 @@ function xdif {
 # ============================================================
 
 function dictado {
-  open "/Users/carlosocando/Desktop/Captura de pantalla 2026-04-28 a las 3.21.38 p.m..png"
+	open "/Users/carlosocando/Desktop/Captura de pantalla 2026-04-28 a las 3.21.38 p.m..png"
 
-  echo "**** La opción se encuentra dentro de:"
-  echo "     Configuración del Sistema > Teclado"
-  xread "continuar con el sistema .."
+	echo "**** La opción se encuentra dentro de:"
+	echo "     Configuración del Sistema > Teclado"
+	xread "continuar con el sistema .."
 
-  open "x-apple.systempreferences:com.apple.Keyboard-Settings.extension"
+	open "x-apple.systempreferences:com.apple.Keyboard-Settings.extension"
 }
-
-
 
 # ============================================================
 # FUNCIÓN: xdepen
@@ -1602,17 +1584,16 @@ function dictado {
 
 function xmvnglas {
 
-  mvn clean package
-  asadmin --host localhost --port 4848 undeploy referidos2intento-1.0
-  open -n http://localhost:4848/common/index.jsf
-  xpausa 5 
-  asadmin deploy "$1"
-  open -n http://localhost:4848/common/index.jsf
+	xread "? La Compilacion del proyecto y recuerde que en GlassFish (DEBE INGRESAR EN WAR CON RUTA COMPL-e ETA )...\n"
 
-
+	mvn clean package
+	asadmin --host localhost --port 4848 undeploy referidos2intento-1.0
+	open -n http://localhost:4848/common/index.jsf
+	xpausa 5
+	asadmin deploy "$1"
+	open -n http://localhost:4848/common/index.jsf
 
 }
-
 
 # ============================================================
 # FUNCIÓN: XDRIVEUP
@@ -1635,120 +1616,120 @@ function xmvnglas {
 
 function xdriveup() {
 
-  # --------------------------------------------------------
-  # Validar que no se reciban parámetros
-  # --------------------------------------------------------
-  if [[ $# -ne 0 ]]; then
-    echo "=================================================="
-    echo "USO:"
-    echo "  xdriveup"
-    echo ""
-    echo "DESCRIPCIÓN:"
-    echo "  Sube archivos a Google Drive uno por uno."
-    echo "  Después de cada archivo pregunta si deseas subir otro."
-    echo ""
-    echo "CUENTA:"
-    echo "  cocandoazuaje@gmail.com"
-    echo ""
-    echo "REMOTE:"
-    echo "  gdrive"
-    echo "=================================================="
-    return 1
-  fi
+	# --------------------------------------------------------
+	# Validar que no se reciban parámetros
+	# --------------------------------------------------------
+	if [[ $# -ne 0 ]]; then
+		echo "=================================================="
+		echo "USO:"
+		echo "  xdriveup"
+		echo ""
+		echo "DESCRIPCIÓN:"
+		echo "  Sube archivos a Google Drive uno por uno."
+		echo "  Después de cada archivo pregunta si deseas subir otro."
+		echo ""
+		echo "CUENTA:"
+		echo "  cocandoazuaje@gmail.com"
+		echo ""
+		echo "REMOTE:"
+		echo "  gdrive"
+		echo "=================================================="
+		return 1
+	fi
 
-  # --------------------------------------------------------
-  # Variables locales
-  # --------------------------------------------------------
-  local FILE_PATH
-  local FILE_NAME
-  local RESPUESTA
+	# --------------------------------------------------------
+	# Variables locales
+	# --------------------------------------------------------
+	local FILE_PATH
+	local FILE_NAME
+	local RESPUESTA
 
-  # --------------------------------------------------------
-  # Encabezado inicial
-  # --------------------------------------------------------
-  echo "=================================================="
-  echo "SUBIDA INTERACTIVA A GOOGLE DRIVE"
-  echo "Cuenta: cocandoazuaje@gmail.com"
-  echo "Destino: gdrive:/"
-  echo "=================================================="
+	# --------------------------------------------------------
+	# Encabezado inicial
+	# --------------------------------------------------------
+	echo "=================================================="
+	echo "SUBIDA INTERACTIVA A GOOGLE DRIVE"
+	echo "Cuenta: cocandoazuaje@gmail.com"
+	echo "Destino: gdrive:/"
+	echo "=================================================="
 
-  # --------------------------------------------------------
-  # Bucle principal de subida
-  # --------------------------------------------------------
-  while true; do
+	# --------------------------------------------------------
+	# Bucle principal de subida
+	# --------------------------------------------------------
+	while true; do
 
-    # ----------------------------------------------------
-    # Solicitar ruta del archivo
-    # ----------------------------------------------------
-    echo ""
-    read "FILE_PATH?Ruta completa del archivo a subir: "
+		# ----------------------------------------------------
+		# Solicitar ruta del archivo
+		# ----------------------------------------------------
+		echo ""
+		read "FILE_PATH?Ruta completa del archivo a subir: "
 
-    # ----------------------------------------------------
-    # Validar existencia del archivo
-    # ----------------------------------------------------
-    if [[ ! -f "$FILE_PATH" ]]; then
-      echo "❌ Error: Archivo no encontrado."
-      continue
-    fi
+		# ----------------------------------------------------
+		# Validar existencia del archivo
+		# ----------------------------------------------------
+		if [[ ! -f "$FILE_PATH" ]]; then
+			echo "❌ Error: Archivo no encontrado."
+			continue
+		fi
 
-    # ----------------------------------------------------
-    # Obtener nombre del archivo
-    # ----------------------------------------------------
-    FILE_NAME=$(basename "$FILE_PATH")
+		# ----------------------------------------------------
+		# Obtener nombre del archivo
+		# ----------------------------------------------------
+		FILE_NAME=$(basename "$FILE_PATH")
 
-    # ----------------------------------------------------
-    # Mostrar información de subida
-    # ----------------------------------------------------
-    echo "--------------------------------------------------"
-    echo "Subiendo: $FILE_NAME"
-    echo "--------------------------------------------------"
+		# ----------------------------------------------------
+		# Mostrar información de subida
+		# ----------------------------------------------------
+		echo "--------------------------------------------------"
+		echo "Subiendo: $FILE_NAME"
+		echo "--------------------------------------------------"
 
-    # ----------------------------------------------------
-    # Ejecutar subida con rclone
-    # ----------------------------------------------------
-    echo "Subiendo $FILE_NAME ..."
-    rclone copy "$FILE_PATH" gdrive:/
+		# ----------------------------------------------------
+		# Ejecutar subida con rclone
+		# ----------------------------------------------------
+		echo "Subiendo $FILE_NAME ..."
+		rclone copy "$FILE_PATH" gdrive:/
 
-    # ----------------------------------------------------
-    # Validar resultado
-    # ----------------------------------------------------
-    if [[ $? -eq 0 ]]; then
-      echo "✅ Archivo subido correctamente: $FILE_NAME"
-    else
-      echo "❌ Error durante subida."
-    fi
+		# ----------------------------------------------------
+		# Validar resultado
+		# ----------------------------------------------------
+		if [[ $? -eq 0 ]]; then
+			echo "✅ Archivo subido correctamente: $FILE_NAME"
+		else
+			echo "❌ Error durante subida."
+		fi
 
-    # ----------------------------------------------------
-    # Preguntar si desea continuar
-    # ----------------------------------------------------
-    while true; do
-      echo ""
-      read "RESPUESTA?¿Deseas subir otro archivo? (s/n): "
+		# ----------------------------------------------------
+		# Preguntar si desea continuar
+		# ----------------------------------------------------
+		while true; do
+			echo ""
+			read "RESPUESTA?¿Deseas subir otro archivo? (s/n): "
 
-      case "$RESPUESTA" in
-      s|S)
+			case "$RESPUESTA" in
+			s | S)
 
-        # Continuar bucle principal
-        break
-        ;;
+				# Continuar bucle principal
+				break
+				;;
 
-      n|N)
+			n | N)
 
-        # Finalizar proceso
-        echo "=================================================="
-        echo "Proceso finalizado."
-        echo "=================================================="
-        return 0
-        ;;
+				# Finalizar proceso
+				echo "=================================================="
+				echo "Proceso finalizado."
+				echo "=================================================="
+				return 0
+				;;
 
-      *)
+			*)
 
-        # Respuesta inválida
-        echo "⚠️ Respuesta inválida. Usa s o n."
-        ;;
-      esac
-    done
-  done
+				# Respuesta inválida
+				echo "⚠️ Respuesta inválida. Usa s o n."
+				;;
+			esac
+		done
+	done
 }
 
 # ============================================================
@@ -1767,49 +1748,49 @@ function xdriveup() {
 
 function xtart() {
 
-  # Validar parámetro
-  if [[ $# -lt 1 ]]; then
-    echo "=================================================="
-    echo "FUNCIÓN: xtart"
-    echo "=================================================="
-    echo "DESCRIPCIÓN:"
-    echo "  Muestra el contenido interno de archivos comprimidos:"
-    echo "   - .tar"
-    echo "   - .tar.gz"
-    echo "   - .tgz"
-    echo "   - .tar.bz2"
-    echo ""
-    echo "COMANDO UTILIZADO:"
-    echo "  tar -tf <archivo>"
-    echo ""
-    echo "USO:"
-    echo "  xtart <archivo_tar>"
-    echo ""
-    echo "EJEMPLO:"
-    echo "  xtart todo_git.tar.gz"
-    echo "=================================================="
-    return 1
-  fi
+	# Validar parámetro
+	if [[ $# -lt 1 ]]; then
+		echo "=================================================="
+		echo "FUNCIÓN: xtart"
+		echo "=================================================="
+		echo "DESCRIPCIÓN:"
+		echo "  Muestra el contenido interno de archivos comprimidos:"
+		echo "   - .tar"
+		echo "   - .tar.gz"
+		echo "   - .tgz"
+		echo "   - .tar.bz2"
+		echo ""
+		echo "COMANDO UTILIZADO:"
+		echo "  tar -tf <archivo>"
+		echo ""
+		echo "USO:"
+		echo "  xtart <archivo_tar>"
+		echo ""
+		echo "EJEMPLO:"
+		echo "  xtart todo_git.tar.gz"
+		echo "=================================================="
+		return 1
+	fi
 
-  local TAR_FILE="$1"
+	local TAR_FILE="$1"
 
-  # Validar existencia
-  if [[ ! -f "$TAR_FILE" ]]; then
-    echo "❌ Error: Archivo no encontrado -> $TAR_FILE"
-    return 1
-  fi
+	# Validar existencia
+	if [[ ! -f "$TAR_FILE" ]]; then
+		echo "❌ Error: Archivo no encontrado -> $TAR_FILE"
+		return 1
+	fi
 
-  echo "=================================================="
-  echo "LISTANDO CONTENIDO:"
-  echo "  $TAR_FILE"
-  echo "=================================================="
+	echo "=================================================="
+	echo "LISTANDO CONTENIDO:"
+	echo "  $TAR_FILE"
+	echo "=================================================="
 
-  tar -tf "$TAR_FILE" | grep -i "$2"
+	tar -tf "$TAR_FILE" | grep -i "$2"
 
-  if [[ $? -ne 0 ]]; then
-    echo "❌ Error: No se pudo listar el contenido del archivo."
-    return 1
-  fi
+	if [[ $? -ne 0 ]]; then
+		echo "❌ Error: No se pudo listar el contenido del archivo."
+		return 1
+	fi
 }
 
 # ============================================================
@@ -1835,46 +1816,44 @@ function xtart() {
 
 function xgitz() {
 
+	local COMMIT_MSG="Actualizando perfiles ..."
+	local ZSHRC="$HOME/.zshrc"
+	local ZXALIAS="$HOME/.zxalias"
+	local ZXFUNCTION="$HOME/.zxfunction"
 
-  local COMMIT_MSG="Actualizando perfiles ..."
-  local ZSHRC="$HOME/.zshrc"
-  local ZXALIAS="$HOME/.zxalias"
-  local ZXFUNCTION="$HOME/.zxfunction"
+	# Validar existencia de archivos
+	for FILE in "$ZSHRC" "$ZXALIAS" "$ZXFUNCTION"; do
+		if [[ ! -f "$FILE" ]]; then
+			echo "❌ Error: No existe $FILE"
+			return 1
+		fi
+	done
 
-  # Validar existencia de archivos
-  for FILE in "$ZSHRC" "$ZXALIAS" "$ZXFUNCTION"; do
-    if [[ ! -f "$FILE" ]]; then
-      echo "❌ Error: No existe $FILE"
-      return 1
-    fi
-  done
+	echo "=================================================="
+	echo "COPIANDO ARCHIVOS DE CONFIGURACIÓN..."
+	echo "=================================================="
 
-  echo "=================================================="
-  echo "COPIANDO ARCHIVOS DE CONFIGURACIÓN..."
-  echo "=================================================="
+	cp "$ZSHRC" .
+	cp "$ZXALIAS" .
+	cp "$ZXFUNCTION" .
 
-  cp "$ZSHRC" .
-  cp "$ZXALIAS" .
-  cp "$ZXFUNCTION" .
+	echo "=================================================="
+	echo "SUBIENDO A GIT..."
+	echo "=================================================="
+	echo -e "\nMostrando status ...\n"
+	git status \.zxalias \.zxfunction \.zshrc
+	xread-e "siguiente paso...\n"
+	echo -e "\nSubiendo ...\n"
+	git add .zshrc .zxalias .zxfunction || return 1
+	git commit -m "$COMMIT_MSG" || return 1
+	git push || return 1
+	echo -e "\nMostrando status ...\n"
+	git status \.zxalias \.zxfunction \.zshrc
 
-  echo "=================================================="
-  echo "SUBIENDO A GIT..."
-  echo "=================================================="
-  echo "\nMostrando status ...\n"
-  git status \.zxalias \.zxfunction \.zshrc
-  xread "siguiente paso...\n"
-  echo "\nSubiendo ...\n"
-  git add .zshrc .zxalias .zxfunction || return 1
-  git commit -m "$COMMIT_MSG" || return 1
-  git push || return 1
-  echo "\nMostrando status ...\n"
-  git status \.zxalias \.zxfunction \.zshrc
-
-  echo "\n=================================================="
-  echo "✅ Respaldo completado correctamente."
-  echo "==================================================\n"
+	echo -e "\n=================================================="
+	echo "✅ Respaldo completado correctamente."
+	echo -e "==================================================\n"
 }
-
 
 # ============================================================
 # FUNCIÓN: XFINDPORC
@@ -1894,64 +1873,63 @@ function xgitz() {
 
 function xfindporc() {
 
-  # ----------------------------------------------------------
-  # Validar parámetro obligatorio
-  # ----------------------------------------------------------
-  if [ $# -eq 0 ]; then
-    echo "Uso: xfindporc <patrón>"
-    echo ""
-    echo "Ejemplo:"
-    echo '  xfindporc "crypto|encrypt|jar"'
-    return 1
-  fi
+	# ----------------------------------------------------------
+	# Validar parámetro obligatorio
+	# ----------------------------------------------------------
+	if [ $# -eq 0 ]; then
+		echo "Uso: xfindporc <patrón>"
+		echo ""
+		echo "Ejemplo:"
+		echo '  xfindporc "crypto|encrypt|jar"'
+		return 1
+	fi
 
-  # ----------------------------------------------------------
-  # Informar inicio
-  # ----------------------------------------------------------
-  echo "**** Calculando total de archivos..."
+	# ----------------------------------------------------------
+	# Informar inicio
+	# ----------------------------------------------------------
+	echo "**** Calculando total de archivos..."
 
-  # ----------------------------------------------------------
-  # Calcular cantidad total de archivos
-  # ----------------------------------------------------------
-  total=$(find ~ -type f 2>/dev/null | wc -l | tr -d ' ')
+	# ----------------------------------------------------------
+	# Calcular cantidad total de archivos
+	# ----------------------------------------------------------
+	total=$(find ~ -type f 2>/dev/null | wc -l | tr -d ' ')
 
-  # ----------------------------------------------------------
-  # Mostrar información general
-  # ----------------------------------------------------------
-  echo "Total archivos: $total"
-  echo "**** Buscando: $1"
-  echo "------------------------------"
+	# ----------------------------------------------------------
+	# Mostrar información general
+	# ----------------------------------------------------------
+	echo "Total archivos: $total"
+	echo "**** Buscando: $1"
+	echo "------------------------------"
 
-  # ----------------------------------------------------------
-  # Inicializar contador
-  # ----------------------------------------------------------
-  count=0
+	# ----------------------------------------------------------
+	# Inicializar contador
+	# ----------------------------------------------------------
+	count=0
 
-  # ----------------------------------------------------------
-  # Recorrer archivos
-  # ----------------------------------------------------------
-  find ~ -type f 2>/dev/null | while read -r file; do
+	# ----------------------------------------------------------
+	# Recorrer archivos
+	# ----------------------------------------------------------
+	find ~ -type f 2>/dev/null | while read -r file; do
 
-    # Incrementar contador
-    count=$((count + 1))
+		# Incrementar contador
+		count=$((count + 1))
 
-    # Calcular porcentaje
-    percent=$((count * 100 / total))
+		# Calcular porcentaje
+		percent=$((count * 100 / total))
 
-    # --------------------------------------------------------
-    # Aplicar filtro
-    # --------------------------------------------------------
-    echo "$file" | grep -iE "$1" >/dev/null
+		# --------------------------------------------------------
+		# Aplicar filtro
+		# --------------------------------------------------------
+		echo "$file" | grep -iE "$1" >/dev/null
 
-    # --------------------------------------------------------
-    # Mostrar coincidencias
-    # --------------------------------------------------------
-    if [ $? -eq 0 ]; then
-      echo "[$percent%] $file"
-    fi
-  done
+		# --------------------------------------------------------
+		# Mostrar coincidencias
+		# --------------------------------------------------------
+		if [ $? -eq 0 ]; then
+			echo "[$percent%] $file"
+		fi
+	done
 }
-
 
 # ============================================================
 # FUNCIÓN: xbateria
@@ -1970,69 +1948,69 @@ function xfindporc() {
 #   xbateria
 # ============================================================
 function xbate() {
-  OS=$(uname)
+	OS=$(uname)
 
-  # Colores
-  VERDE="\033[1;32m"
-  AMARILLO="\033[1;33m"
-  ROJO="\033[1;31m"
-  AZUL="\033[1;34m"
-  CYAN="\033[1;36m"
-  RESET="\033[0m"
+	# Colores
+	VERDE="\033[1;32m"
+	AMARILLO="\033[1;33m"
+	ROJO="\033[1;31m"
+	AZUL="\033[1;34m"
+	CYAN="\033[1;36m"
+	RESET="\033[0m"
 
-  echo -e "${CYAN}======================================${RESET}"
-  echo -e "${CYAN}   Información de la batería${RESET}"
-  echo -e "${CYAN}======================================${RESET}"
+	echo -e "${CYAN}======================================${RESET}"
+	echo -e "${CYAN}   Información de la batería${RESET}"
+	echo -e "${CYAN}======================================${RESET}"
 
-  if [[ "$OS" == "Darwin" ]]; then
-    # macOS
-    INFO=$(pmset -g batt)
-    PORCENTAJE=$(echo "$INFO" | grep -Eo "[0-9]+%")
-    ESTADO=$(echo "$INFO" | grep -Eo "charging|discharging|charged")
-    TIEMPO=$(echo "$INFO" | grep -Eo "[0-9]+:[0-9]+")
+	if [[ "$OS" == "Darwin" ]]; then
+		# macOS
+		INFO=$(pmset -g batt)
+		PORCENTAJE=$(echo "$INFO" | grep -Eo "[0-9]+%")
+		ESTADO=$(echo "$INFO" | grep -Eo "charging|discharging|charged")
+		TIEMPO=$(echo "$INFO" | grep -Eo "[0-9]+:[0-9]+")
 
-    NUM=${PORCENTAJE%\%}
-    if (( NUM > 70 )); then
-      COLOR=$VERDE
-    elif (( NUM > 30 )); then
-      COLOR=$AMARILLO
-    else
-      COLOR=$ROJO
-    fi
+		NUM=${PORCENTAJE%\%}
+		if ((NUM > 70)); then
+			COLOR=$VERDE
+		elif ((NUM > 30)); then
+			COLOR=$AMARILLO
+		else
+			COLOR=$ROJO
+		fi
 
-    echo -e "🔋 Porcentaje: ${COLOR}${PORCENTAJE}${RESET}"
-    echo -e "⚡ Estado: ${AMARILLO}${ESTADO}${RESET}"
-    [[ -n "$TIEMPO" ]] && echo -e "⏳ Tiempo restante: ${AZUL}${TIEMPO}${RESET}"
+		echo -e "🔋 Porcentaje: ${COLOR}${PORCENTAJE}${RESET}"
+		echo -e "⚡ Estado: ${AMARILLO}${ESTADO}${RESET}"
+		[[ -n "$TIEMPO" ]] && echo -e "⏳ Tiempo restante: ${AZUL}${TIEMPO}${RESET}"
 
-  elif [[ "$OS" == "Linux" ]]; then
-    # Linux
-    if command -v acpi >/dev/null 2>&1; then
-      INFO=$(acpi -b)
-      PORCENTAJE=$(echo "$INFO" | grep -Eo "[0-9]+%")
-      ESTADO=$(echo "$INFO" | grep -Eo "Charging|Discharging|Full")
-      TIEMPO=$(echo "$INFO" | grep -Eo "[0-9]+:[0-9]+:[0-9]+")
-      SALUD=$(acpi -i | grep -i "capacity" | awk '{print $NF}')
+	elif [[ "$OS" == "Linux" ]]; then
+		# Linux
+		if command -v acpi >/dev/null 2>&1; then
+			INFO=$(acpi -b)
+			PORCENTAJE=$(echo "$INFO" | grep -Eo "[0-9]+%")
+			ESTADO=$(echo "$INFO" | grep -Eo "Charging|Discharging|Full")
+			TIEMPO=$(echo "$INFO" | grep -Eo "[0-9]+:[0-9]+:[0-9]+")
+			SALUD=$(acpi -i | grep -i "capacity" | awk '{print $NF}')
 
-      NUM=${PORCENTAJE%\%}
-      if (( NUM > 70 )); then
-        COLOR=$VERDE
-      elif (( NUM > 30 )); then
-        COLOR=$AMARILLO
-      else
-        COLOR=$ROJO
-      fi
+			NUM=${PORCENTAJE%\%}
+			if ((NUM > 70)); then
+				COLOR=$VERDE
+			elif ((NUM > 30)); then
+				COLOR=$AMARILLO
+			else
+				COLOR=$ROJO
+			fi
 
-      echo -e "🔋 Porcentaje: ${COLOR}${PORCENTAJE}${RESET}"
-      echo -e "⚡ Estado: ${AMARILLO}${ESTADO}${RESET}"
-      [[ -n "$TIEMPO" ]] && echo -e "⏳ Tiempo restante: ${AZUL}${TIEMPO}${RESET}"
-      [[ -n "$SALUD" ]] && echo -e "❤️ Salud de la batería: ${CYAN}${SALUD}${RESET}"
-    else
-      echo "❌ El comando 'acpi' no está instalado."
-      echo "Instálalo con: sudo apt install acpi"
-    fi
-  else
-    echo "⚠️ Sistema operativo no soportado: $OS"
-  fi
+			echo -e "🔋 Porcentaje: ${COLOR}${PORCENTAJE}${RESET}"
+			echo -e "⚡ Estado: ${AMARILLO}${ESTADO}${RESET}"
+			[[ -n "$TIEMPO" ]] && echo -e "⏳ Tiempo restante: ${AZUL}${TIEMPO}${RESET}"
+			[[ -n "$SALUD" ]] && echo -e "❤️ Salud de la batería: ${CYAN}${SALUD}${RESET}"
+		else
+			echo "❌ El comando 'acpi' no está instalado."
+			echo "Instálalo con: sudo apt install acpi"
+		fi
+	else
+		echo "⚠️ Sistema operativo no soportado: $OS"
+	fi
 }
 
 # ============================================================
@@ -2051,8 +2029,8 @@ function xbate() {
 # ____________________________________________________________
 function xdf() {
 
-  # Mostrar información de disco con encabezados coloreados
-  df -h | awk '
+	# Mostrar información de disco con encabezados coloreados
+	df -h | awk '
   NR==1 {
     print "\033[1;36m" $0 "\033[0m"
   }
@@ -2068,68 +2046,68 @@ function xdf() {
 # ____________________________________________________________
 function xinfo() {
 
-  # Limpiar pantalla
-  clear
+	# Limpiar pantalla
+	clear
 
-  # ----------------------------------------------------------
-  # ENCABEZADO USUARIO
-  # ----------------------------------------------------------
-  echo -e "\033[1;36m==============================\033[0m"
-  echo -e "\033[1;32m        INFO DEL Usuario      \033[0m"
-  echo -e "\033[1;36m==============================\033[0m"
+	# ----------------------------------------------------------
+	# ENCABEZADO USUARIO
+	# ----------------------------------------------------------
+	echo -e "\033[1;36m==============================\033[0m"
+	echo -e "\033[1;32m        INFO DEL Usuario      \033[0m"
+	echo -e "\033[1;36m==============================\033[0m"
 
-  echo -e "\033[1;33mUsuario:\033[0m $USER"
-  echo -e "\033[1;33mEquipo:\033[0m $(scutil --get ComputerName 2>/dev/null)"
-  echo -e "\033[1;33mHost:\033[0m $(hostname)"
+	echo -e "\033[1;33mUsuario:\033[0m $USER"
+	echo -e "\033[1;33mEquipo:\033[0m $(scutil --get ComputerName 2>/dev/null)"
+	echo -e "\033[1;33mHost:\033[0m $(hostname)"
 
-  # ----------------------------------------------------------
-  # DETECTAR VERSIÓN DE macOS
-  # ----------------------------------------------------------
-  version=$(sw_vers -productVersion)
+	# ----------------------------------------------------------
+	# DETECTAR VERSIÓN DE macOS
+	# ----------------------------------------------------------
+	version=$(sw_vers -productVersion)
 
-  case "$version" in
-    26*) name="Tahoe" ;;
-    25*) name="Sequoia" ;;
-    24*) name="Sonoma" ;;
-    23*) name="Ventura" ;;
-    22*) name="Monterey" ;;
-    21*) name="Big Sur" ;;
-    *)   name="Desconocido" ;;
-  esac
+	case "$version" in
+	26*) name="Tahoe" ;;
+	25*) name="Sequoia" ;;
+	24*) name="Sonoma" ;;
+	23*) name="Ventura" ;;
+	22*) name="Monterey" ;;
+	21*) name="Big Sur" ;;
+	*) name="Desconocido" ;;
+	esac
 
-  # ----------------------------------------------------------
-  # INFORMACIÓN DEL SISTEMA
-  # ----------------------------------------------------------
-  echo -e "\033[1;36m==============================\033[0m"
-  echo -e "\033[1;32m    INFORMACION DEL SISTEMA   \033[0m"
-  echo -e "\033[1;36m==============================\033[0m"
+	# ----------------------------------------------------------
+	# INFORMACIÓN DEL SISTEMA
+	# ----------------------------------------------------------
+	echo -e "\033[1;36m==============================\033[0m"
+	echo -e "\033[1;32m    INFORMACION DEL SISTEMA   \033[0m"
+	echo -e "\033[1;36m==============================\033[0m"
 
-  echo -e "\033[1;33mSistema Operativo:\033[0m macOS \033[1;36m$name\033[0m"
-  echo -e "\033[1;33mVersión:\033[0m $version"
-  echo -e "\033[1;33mBuild:\033[0m $(sw_vers -buildVersion)"
-  echo -e "\033[1;33mCPU:\033[0m $(sysctl -n machdep.cpu.brand_string)"
+	echo -e "\033[1;33mSistema Operativo:\033[0m macOS \033[1;36m$name\033[0m"
+	echo -e "\033[1;33mVersión:\033[0m $version"
+	echo -e "\033[1;33mBuild:\033[0m $(sw_vers -buildVersion)"
+	echo -e "\033[1;33mCPU:\033[0m $(sysctl -n machdep.cpu.brand_string)"
 
-  # ----------------------------------------------------------
-  # MEMORIA RAM
-  # ----------------------------------------------------------
-  ram=$(sysctl -n hw.memsize)
-  ram_gb=$(awk "BEGIN {printf \"%.2f\", $ram/1024/1024/1024}")
+	# ----------------------------------------------------------
+	# MEMORIA RAM
+	# ----------------------------------------------------------
+	ram=$(sysctl -n hw.memsize)
+	ram_gb=$(awk "BEGIN {printf \"%.2f\", $ram/1024/1024/1024}")
 
-  echo -e "\033[1;33mRAM:\033[0m ${ram_gb} GB"
+	echo -e "\033[1;33mRAM:\033[0m ${ram_gb} GB"
 
-  # ----------------------------------------------------------
-  # TIEMPO ENCENDIDO
-  # ----------------------------------------------------------
-  echo -e "\033[1;33mUptime:\033[0m $(uptime | awk -F'up ' '{print $2}' | awk -F',' '{print $1}')"
+	# ----------------------------------------------------------
+	# TIEMPO ENCENDIDO
+	# ----------------------------------------------------------
+	echo -e "\033[1;33mUptime:\033[0m $(uptime | awk -F'up ' '{print $2}' | awk -F',' '{print $1}')"
 
-  # ----------------------------------------------------------
-  # DISCO
-  # ----------------------------------------------------------
-  echo -e "\033[1;36m==============================\033[0m"
-  echo -e "\033[1;32m     INFORMACION DEL DISCO    \033[0m"
-  echo -e "\033[1;36m==============================\033[0m"
+	# ----------------------------------------------------------
+	# DISCO
+	# ----------------------------------------------------------
+	echo -e "\033[1;36m==============================\033[0m"
+	echo -e "\033[1;32m     INFORMACION DEL DISCO    \033[0m"
+	echo -e "\033[1;36m==============================\033[0m"
 
-  df -h / | awk '
+	df -h / | awk '
   NR==1 {
     print "\033[1;36m" $0 "\033[0m"
   }
@@ -2138,18 +2116,18 @@ function xinfo() {
     gsub("%","",use)
 
     color = (use >= 80) ? "\033[1;31m" : "\033[1;32m"
-    printf "%s%s\033[0m\n", color, $0
+    print-e f "%s%s\033[0m\n", color, $0
   }
   '
 
-  # ----------------------------------------------------------
-  # BATERÍA
-  # ----------------------------------------------------------
-  echo -e "\033[1;36m==============================\033[0m"
-  echo -e "\033[1;32m      ESTADO DE LA BATERÍA    \033[0m"
-  echo -e "\033[1;36m==============================\033[0m"
+	# ----------------------------------------------------------
+	# BATERÍA
+	# ----------------------------------------------------------
+	echo -e "\033[1;36m==============================\033[0m"
+	echo -e "\033[1;32m      ESTADO DE LA BATERÍA    \033[0m"
+	echo -e "\033[1;36m==============================\033[0m"
 
-  system_profiler SPPowerDataType | awk '
+	system_profiler SPPowerDataType | awk '
   /Cycle Count/ {
     cycles = $3
 
@@ -2160,7 +2138,7 @@ function xinfo() {
     else
       color="\033[1;31m"
 
-      printf "%sCiclos: %s\033[0m\n", color, cycles
+      print-e f "%sCiclos: %s\033[0m\n", color, cycles
     }
 
     /Condition/ {
@@ -2180,255 +2158,254 @@ function xinfo() {
     }
     '
 
-    echo "----------------------------"
+	echo "----------------------------"
 
-    battery=$(pmset -g batt | grep -o "[0-9]\+%")
-    echo -e "\033[1;33mPorcentaje actual:\033[0m $battery"
-  }
+	battery=$(pmset -g batt | grep -o "[0-9]\+%")
+	echo -e "\033[1;33mPorcentaje actual:\033[0m $battery"
+}
 
-  # ____________________________________________________________
-  # TRADUCCIÓN
-  # TRADUCE TEXTO DEL PORTAPAPELES
-  # ____________________________________________________________
-  function xtra {
+# ____________________________________________________________
+# TRADUCCIÓN
+# TRADUCE TEXTO DEL PORTAPAPELES
+# ____________________________________________________________
+function xtra {
 
-    # ----------------------------------------------------------
-    # VALIDAR DEPENDENCIA
-    # ----------------------------------------------------------
-    if ! command -v trans &> /dev/null; then
-      echo "❌ Error: translate-shell (trans) no está instalado."
-      echo "📦 Instálalo con: brew install translate-shell"
-      exit 1
-    fi
+	# ----------------------------------------------------------
+	# VALIDAR DEPENDENCIA
+	# ----------------------------------------------------------
+	if ! command -v trans &>/dev/null; then
+		echo "❌ Error: translate-shell (trans) no está instalado."
+		echo "📦 Instálalo con: brew install translate-shell"
+		exit 1
+	fi
 
-    # ----------------------------------------------------------
-    # OBTENER TEXTO
-    # ----------------------------------------------------------
-    texto=$(pbpaste)
+	# ----------------------------------------------------------
+	# OBTENER TEXTO
+	# ----------------------------------------------------------
+	texto=$(pbpaste)
 
-    # ----------------------------------------------------------
-    # VALIDAR CONTENIDO
-    # ----------------------------------------------------------
-    if [ -z "$texto" ]; then
-      echo "⚠️ El portapapeles está vacío."
-      exit 1
-    fi
+	# ----------------------------------------------------------
+	# VALIDAR CONTENIDO
+	# ----------------------------------------------------------
+	if [ -z "$texto" ]; then
+		echo "⚠️ El portapapeles está vacío."
+		exit 1
+	fi
 
-    # ----------------------------------------------------------
-    # TRADUCCIÓN
-    # ----------------------------------------------------------
-    echo "🔄 Traduciendo del inglés al español..."
-    traduccion=$(trans -brief -source en -target es "$texto")
+	# ----------------------------------------------------------
+	# TRADUCCIÓN
+	# ----------------------------------------------------------
+	echo "🔄 Traduciendo del inglés al español..."
+	traduccion=$(trans -brief -source en -target es "$texto")
 
-    # ----------------------------------------------------------
-    # MOSTRAR RESULTADO
-    # ----------------------------------------------------------
-    echo "✅ Traducción:"
-    echo "$traduccion"
+	# ----------------------------------------------------------
+	# MOSTRAR RESULTADO
+	# ----------------------------------------------------------
+	echo "✅ Traducción:"
+	echo "$traduccion"
 
-    # ----------------------------------------------------------
-    # LECTURA EN VOZ ALTA
-    # ----------------------------------------------------------
-    say -v Monica "$traduccion"
-  }
+	# ----------------------------------------------------------
+	# LECTURA EN VOZ ALTA
+	# ----------------------------------------------------------
+	say -v Monica "$traduccion"
+}
 
-  # ____________________________________________________________
-  # PING
-  # VERIFICACIÓN DE HOSTS DEFINIDOS EN /etc/hosts
-  # ____________________________________________________________
-  function xping() {
+# ____________________________________________________________
+# PING
+# VERIFICACIÓN DE HOSTS DEFINIDOS EN /etc/hosts
+# ____________________________________________________________
+function xping() {
 
-    # ----------------------------------------------------------
-    # COLORES
-    # ----------------------------------------------------------
-    GREEN="\033[1;32m"
-    BLUE="\033[1;34m"
-    YELLOW="\033[1;33m"
-    RED="\033[1;31m"
-    RESET="\033[0m"
+	# ----------------------------------------------------------
+	# COLORES
+	# ----------------------------------------------------------
+	GREEN="\033[1;32m"
+	BLUE="\033[1;34m"
+	YELLOW="\033[1;33m"
+	RED="\033[1;31m"
+	RESET="\033[0m"
 
-    # ----------------------------------------------------------
-    # INICIO
-    # ----------------------------------------------------------
-    echo -e "${BLUE}=== Iniciando ping de /etc/hosts ===${RESET}"
+	# ----------------------------------------------------------
+	# INICIO
+	# ----------------------------------------------------------
+	echo -e "${BLUE}=== Iniciando ping de /etc/hosts ===${RESET}"
 
-    # ----------------------------------------------------------
-    # RECORRER HOSTS
-    # ----------------------------------------------------------
-    while read -r ip host _; do
+	# ----------------------------------------------------------
+	# RECORRER HOSTS
+	# ----------------------------------------------------------
+	while read -r ip host _; do
 
-      # Ignorar comentarios y líneas vacías
-      [[ -z "$ip" || "$ip" == \#* ]] && continue
+		# Ignorar comentarios y líneas vacías
+		[[ -z "$ip" || "$ip" == \#* ]] && continue
 
-      # Validar IPv4
-      if [[ "$ip" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
+		# Validar IPv4
+		if [[ "$ip" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
 
-        echo ""
-        echo -e "${YELLOW}>>> Ping a ${GREEN}$ip${RESET} (${host})"
+			echo ""
+			echo -e "${YELLOW}>>> Ping a ${GREEN}$ip${RESET} (${host})"
 
-        # Ejecutar ping
-        ping -c 3 "$ip" >/dev/null 2>&1
+			# Ejecutar ping
+			ping -c 3 "$ip" >/dev/null 2>&1
 
-        # Mostrar resultado
-        if [ $? -eq 0 ]; then
-          echo -e "${GREEN}✔ $ip responde${RESET}"
-        else
-          echo -e "${RED}✖ $ip no responde${RESET}"
-        fi
-      fi
+			# Mostrar resultado
+			if [ $? -eq 0 ]; then
+				echo -e "${GREEN}✔ $ip responde${RESET}"
+			else
+				echo -e "${RED}✖ $ip no responde${RESET}"
+			fi
+		fi
 
-    done < /etc/hosts
+	done </etc/hosts
 
-    # ----------------------------------------------------------
-    # FIN
-    # ----------------------------------------------------------
-    echo -e "${BLUE}=== Finalizado ===${RESET}"
-  }
+	# ----------------------------------------------------------
+	# FIN
+	# ----------------------------------------------------------
+	echo -e "${BLUE}=== Finalizado ===${RESET}"
+}
 
+function xsyngit() {
 
-  function xsyngit() {
+	echo "=============================="
+	echo "  INICIANDO SINCRONIZACIÓN"
+	echo "=============================="
 
-    echo "=============================="
-    echo "  INICIANDO SINCRONIZACIÓN"
-    echo "=============================="
+	# ------------------------------------------------------------
+	# Validar parámetro obligatorio
+	# ------------------------------------------------------------
+	if [[ -z "$1" ]]; then
+		echo "⚠️  No se recibió mensaje de commit"
+		echo "💡 Uso: xsyngit \"mensaje del commit\""
+		return 1
+	fi
 
-    # ------------------------------------------------------------
-    # Validar parámetro obligatorio
-    # ------------------------------------------------------------
-    if [[ -z "$1" ]]; then
-      echo "⚠️  No se recibió mensaje de commit"
-      echo "💡 Uso: xsyngit \"mensaje del commit\""
-      return 1
-    fi
+	MENSAJE="$1"
 
-    MENSAJE="$1"
+	echo "🧾 Mensaje de commit: $MENSAJE"
 
-    echo "🧾 Mensaje de commit: $MENSAJE"
+	echo "**** use Source..."
+	echo "------------------------"
 
-    echo "**** use Source..."
-    echo "------------------------"
+	# ------------------------------------------------------------
+	# Sync de configuración
+	# ------------------------------------------------------------
+	rsync -avh --progress ~/.zxalias /Users/carlosocando/para_git/
+	rsync -avh --progress ~/.zxfunction /Users/carlosocando/para_git/
+	rsync -avh --progress ~/.zshrc /Users/carlosocando/para_git/
 
-    # ------------------------------------------------------------
-    # Sync de configuración
-    # ------------------------------------------------------------
-    rsync -avh --progress ~/.zxalias /Users/carlosocando/para_git/
-    rsync -avh --progress ~/.zxfunction /Users/carlosocando/para_git/
-    rsync -avh --progress ~/.zshrc /Users/carlosocando/para_git/
+	# ------------------------------------------------------------
+	# Cargar dependencias externas
+	# ------------------------------------------------------------
+	# if [[ -f "/Users/carlosocando/para_git/trae_zx.sh" ]]; then
+	#   source /Users/carlosocando/para_git/trae_zx.sh
+	# else
+	#   echo "❌ Error: no se encontró trae_zx.sh"
+	#   return 1
+	# fi
 
-    # ------------------------------------------------------------
-    # Cargar dependencias externas
-    # ------------------------------------------------------------
-    # if [[ -f "/Users/carlosocando/para_git/trae_zx.sh" ]]; then
-      #   source /Users/carlosocando/para_git/trae_zx.sh
-      # else
-      #   echo "❌ Error: no se encontró trae_zx.sh"
-      #   return 1
-      # fi
+	# ------------------------------------------------------------
+	# Variables principales
+	# ------------------------------------------------------------
+	ORIGEN="/Users/carlosocando/Documentos/ionix/Desarrollando/"
+	DESTINO="$HOME/para_git/"
 
-      # ------------------------------------------------------------
-      # Variables principales
-      # ------------------------------------------------------------
-      ORIGEN="/Users/carlosocando/Documentos/ionix/Desarrollando/"
-      DESTINO="$HOME/para_git/"
+	# ------------------------------------------------------------
+	# Validar directorio origen
+	# ------------------------------------------------------------
+	if [[ ! -d "$ORIGEN" ]]; then
+		echo "❌ Error: el directorio origen no existe: $ORIGEN"
+		return 1
+	fi
 
-      # ------------------------------------------------------------
-      # Validar directorio origen
-      # ------------------------------------------------------------
-      if [[ ! -d "$ORIGEN" ]]; then
-        echo "❌ Error: el directorio origen no existe: $ORIGEN"
-        return 1
-      fi
+	# ------------------------------------------------------------
+	# Sincronización principal
+	# ------------------------------------------------------------
+	echo "📦 Sincronizando archivos..."
+	rsync -avh --progress "$ORIGEN"* "$DESTINO"
 
-      # ------------------------------------------------------------
-      # Sincronización principal
-      # ------------------------------------------------------------
-      echo "📦 Sincronizando archivos..."
-      rsync -avh --progress "$ORIGEN"* "$DESTINO"
+	if [[ $? -ne 0 ]]; then
+		echo "❌ Error durante rsync"
+		return 1
+	fi
 
-      if [[ $? -ne 0 ]]; then
-        echo "❌ Error durante rsync"
-        return 1
-      fi
+	# ------------------------------------------------------------
+	# Commit automático
+	# ------------------------------------------------------------
+	echo "🧾 Ejecutando commit..."
+	xgitall "$MENSAJE"
 
-      # ------------------------------------------------------------
-      # Commit automático
-      # ------------------------------------------------------------
-      echo "🧾 Ejecutando commit..."
-      xgitall "$MENSAJE"
+	echo "=============================="
+	echo "  SINCRONIZACIÓN COMPLETADA"
+	echo "=============================="
+}
 
-      echo "=============================="
-      echo "  SINCRONIZACIÓN COMPLETADA"
-      echo "=============================="
-    }
+# ============================================================
+# FUNCIÓN: xclose
+# AUTOR: Carlos Ocando
+# DESCRIPCIÓN:
+#   Cierra aplicaciones en macOS de forma limpia (equivalente
+#   a Cmd + Q) usando AppleScript.
+#
+#   - Recibe como parámetro el nombre de la aplicación
+#   - Si no recibe parámetro, muestra ayuda de uso
+#   - Espera a que la aplicación se cierre completamente
+#
+# USO:
+#   xclose "Brave Browser"
+#   xclose "Safari"
+#   xclose "Google Chrome"
+# ============================================================
 
-    # ============================================================
-    # FUNCIÓN: xclose
-    # AUTOR: Carlos Ocando
-    # DESCRIPCIÓN:
-    #   Cierra aplicaciones en macOS de forma limpia (equivalente
-    #   a Cmd + Q) usando AppleScript.
-    #
-    #   - Recibe como parámetro el nombre de la aplicación
-    #   - Si no recibe parámetro, muestra ayuda de uso
-    #   - Espera a que la aplicación se cierre completamente
-    #
-    # USO:
-    #   xclose "Brave Browser"
-    #   xclose "Safari"
-    #   xclose "Google Chrome"
-    # ============================================================
+function xclose {
 
-    function xclose {
+	echo "================================================"
+	echo "        CERRADOR DE APLICACIONES macOS"
+	echo "================================================"
 
-      echo "================================================"
-      echo "        CERRADOR DE APLICACIONES macOS"
-      echo "================================================"
+	# ------------------------------------------------------------
+	# VALIDACIÓN DE PARÁMETRO
+	# ------------------------------------------------------------
+	if [[ -z "$1" ]]; then
+		echo ""
+		echo "❌ ERROR: No se recibió el nombre de la aplicación"
+		echo ""
+		echo "🧠 USO CORRECTO:"
+		echo "   xclose \"Brave Browser\""
+		echo "   xclose \"Safari\""
+		echo "   xclose \"Google Chrome\""
+		echo ""
+		echo "💡 Este comando cierra la aplicación de forma limpia"
+		echo "   (equivalente a Cmd + Q)"
+		echo ""
+		return 1
+	fi
 
-      # ------------------------------------------------------------
-      # VALIDACIÓN DE PARÁMETRO
-      # ------------------------------------------------------------
-      if [[ -z "$1" ]]; then
-        echo ""
-        echo "❌ ERROR: No se recibió el nombre de la aplicación"
-        echo ""
-        echo "🧠 USO CORRECTO:"
-        echo "   xclose \"Brave Browser\""
-        echo "   xclose \"Safari\""
-        echo "   xclose \"Google Chrome\""
-        echo ""
-        echo "💡 Este comando cierra la aplicación de forma limpia"
-        echo "   (equivalente a Cmd + Q)"
-        echo ""
-        return 1
-      fi
+	# ------------------------------------------------------------
+	# VARIABLE PRINCIPAL
+	# ------------------------------------------------------------
+	APP_NAME="$1"
 
-      # ------------------------------------------------------------
-      # VARIABLE PRINCIPAL
-      # ------------------------------------------------------------
-      APP_NAME="$1"
+	echo ""
+	echo "🧾 Cerrando aplicación: $APP_NAME"
+	echo ""
 
-      echo ""
-      echo "🧾 Cerrando aplicación: $APP_NAME"
-      echo ""
+	# ------------------------------------------------------------
+	# CIERRE LIMPIO (APPLE SCRIPT)
+	# ------------------------------------------------------------
+	osascript -e "tell application \"$APP_NAME\" to quit"
 
-      # ------------------------------------------------------------
-      # CIERRE LIMPIO (APPLE SCRIPT)
-      # ------------------------------------------------------------
-      osascript -e "tell application \"$APP_NAME\" to quit"
+	# ------------------------------------------------------------
+	# ESPERAR CIERRE COMPLETO DEL PROCESO
+	# ------------------------------------------------------------
+	while pgrep -f "$APP_NAME" >/dev/null; do
+		sleep 0.5
+	done
 
-      # ------------------------------------------------------------
-      # ESPERAR CIERRE COMPLETO DEL PROCESO
-      # ------------------------------------------------------------
-      while pgrep -f "$APP_NAME" > /dev/null; do
-        sleep 0.5
-      done
+	echo ""
+	echo "✅ $APP_NAME cerrado correctamente"
+	echo "================================================"
+}
 
-      echo ""
-      echo "✅ $APP_NAME cerrado correctamente"
-      echo "================================================"
-   }
-
-    # ============================================================
+# ============================================================
 # FUNCIÓN: xformat
 # Autor: Carlos Eduardo Ocando Azuaje
 # Descripción:
@@ -2446,73 +2423,125 @@ function xinfo() {
 
 function xformat {
 
-  # ----------------------------------------------------------
-  # Validar parámetro obligatorio
-  # ----------------------------------------------------------
-  if [[ -z "$1" ]]; then
-    echo "=================================================="
-    echo "FUNCIÓN: xformat"
-    echo "=================================================="
-    echo "DESCRIPCIÓN:"
-    echo "  Formatea scripts Bash/Zsh usando shfmt."
-    echo ""
-    echo "FUNCIONES:"
-    echo "  ✔ Reindentación automática"
-    echo "  ✔ Corrección estructural"
-    echo "  ✔ Sobrescribe archivo original"
-    echo ""
-    echo "REQUISITO:"
-    echo "  brew install shfmt"
-    echo ""
-    echo "USO:"
-    echo "  xformat <archivo>"
-    echo ""
-    echo "EJEMPLO:"
-    echo "  xformat ~/.zxfunction"
-    echo "=================================================="
-    return 1
-  fi
+	# ----------------------------------------------------------
+	# Validar parámetro obligatorio
+	# ----------------------------------------------------------
+	if [[ -z "$1" ]]; then
+		echo "=================================================="
+		echo "FUNCIÓN: xformat"
+		echo "=================================================="
+		echo "DESCRIPCIÓN:"
+		echo "  Formatea scripts Bash/Zsh usando shfmt."
+		echo ""
+		echo "FUNCIONES:"
+		echo "  ✔ Reindentación automática"
+		echo "  ✔ Corrección estructural"
+		echo "  ✔ Sobrescribe archivo original"
+		echo ""
+		echo "REQUISITO:"
+		echo "  brew install shfmt"
+		echo ""
+		echo "USO:"
+		echo "  xformat <archivo>"
+		echo ""
+		echo "EJEMPLO:"
+		echo "  xformat ~/.zxfunction"
+		echo "=================================================="
+		return 1
+	fi
 
-  # ----------------------------------------------------------
-  # Validar existencia del archivo
-  # ----------------------------------------------------------
-  if [[ ! -f "$1" ]]; then
-    echo "❌ Error: Archivo no encontrado -> $1"
-    return 1
-  fi
+	# ----------------------------------------------------------
+	# Validar existencia del archivo
+	# ----------------------------------------------------------
+	if [[ ! -f "$1" ]]; then
+		echo "❌ Error: Archivo no encontrado -> $1"
+		return 1
+	fi
 
-  # ----------------------------------------------------------
-  # Validar dependencia
-  # ----------------------------------------------------------
-  if ! command -v shfmt >/dev/null 2>&1; then
-    echo "❌ Error: shfmt no está instalado."
-    echo "📦 Instálalo con: brew install shfmt"
-    return 1
-  fi
+	# ----------------------------------------------------------
+	# Validar dependencia
+	# ----------------------------------------------------------
+	if ! command -v shfmt >/dev/null 2>&1; then
+		echo "❌ Error: shfmt no está instalado."
+		echo "📦 Instálalo con: brew install shfmt"
+		return 1
+	fi
 
-  # ----------------------------------------------------------
-  # Inicio
-  # ----------------------------------------------------------
-  echo "=================================================="
-  echo "🔧 Formateando: $1"
-  echo "=================================================="
+	# ----------------------------------------------------------
+	# Inicio
+	# ----------------------------------------------------------
+	echo "=================================================="
+	echo "🔧 Formateando: $1"
+	echo "=================================================="
 
-  # ----------------------------------------------------------
-  # Ejecutar formateo
-  # ----------------------------------------------------------
-  shfmt -i 0 -w "$1"
+	# ----------------------------------------------------------
+	# Ejecutar formateo
+	# ----------------------------------------------------------
+	shfmt -i 0 -w "$1"
 
-  # ----------------------------------------------------------
-  # Validar resultado
-  # ----------------------------------------------------------
-  if [[ $? -eq 0 ]]; then
-    echo ""
-    echo "✅ Proceso finalizado correctamente."
-  else
-    echo ""
-    echo "❌ Error durante el formateo."
-    return 1
-  fi
+	# ----------------------------------------------------------
+	# Validar resultado
+	# ----------------------------------------------------------
+	if [[ $? -eq 0 ]]; then
+		echo ""
+		echo "✅ Proceso finalizado correctamente."
+	else
+		echo ""
+		echo "❌ Error durante el formateo."
+		return 1
+	fi
 
+}
 
+# ============================================================
+# FUNCIÓN: xsintax
+# Autor: Carlos Eduardo Ocando Azuaje
+# Descripción:
+# Verifica la sintaxis de un archivo o script Bash sin ejecutarlo.
+# Útil para detectar errores estructurales antes de usar o ejecutar scripts.
+# ============================================================
+
+function xsintax {
+
+	# --------------------------------------------------------
+	# Validar que se haya proporcionado un archivo
+	# --------------------------------------------------------
+	if [ $# -eq 0 ]; then
+		echo "========================================="
+		echo "         VALIDADOR DE SINTAXIS BASH      "
+		echo "========================================="
+		echo
+		echo "Uso:"
+		echo "xsintax <archivo>"
+		echo
+		echo "Descripción:"
+		echo "Verifica errores de sintaxis en scripts Bash"
+		echo "sin ejecutar el contenido."
+		echo
+		echo "Ejemplo:"
+		echo "xsintax ~/.zxfunction"
+		echo
+		echo "========================================="
+		return 1
+	fi
+
+	# --------------------------------------------------------
+	# Verificar sintaxis del archivo
+	# --------------------------------------------------------
+	echo "========================================="
+	echo "Verificando sintaxis de: $1"
+	echo "========================================="
+
+	bash -n "$1"
+
+	# --------------------------------------------------------
+	# Evaluar resultado
+	# --------------------------------------------------------
+	if [ $? -eq 0 ]; then
+		echo
+		echo "Sintaxis correcta."
+	else
+		echo
+		echo "Se detectaron errores de sintaxis."
+	fi
 }
