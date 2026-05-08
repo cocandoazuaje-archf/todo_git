@@ -4,7 +4,6 @@
 # Descripción: Colección de alias para automatizar tareas
 # ============================================================
 
-
 # -------------------------------
 # Titulo: Ejecutores y Entornos
 # -------------------------------
@@ -38,13 +37,11 @@ alias xngb='ng build'
 # Comando utilizado: speedtest --json | jq
 alias xspt='speedtest --json|jq'
 
-
 # Comando utilizado: mvn clean install
 alias xmvni='clear && mvn clean install '
 
 # Comando utilizado: mvn spring-boot:run
 alias xmvnr='clear && mvn spring-boot:run '
-
 
 # Comando utilizado: nvm i 23.0.0 && npm i express ; node -v
 # Que hace: Instala Node 23 con nvm, instala express y muestra versión de Node
@@ -53,7 +50,6 @@ alias xnpm='nvm i 23.0.0 && npm i express ; node -v'
 # Comando utilizado: node
 # Que hace: Ejecuta Node.js
 alias nno='node'
-
 
 # Comando utilizado: node -v
 # Que hace: Muestra versión de Node.js
@@ -138,7 +134,6 @@ alias r='cd /'
 # Comando utilizado: source ~/.zshrc
 # Que hace: Recarga configuración ZSH
 alias xs='source ~/.zshrc'
-
 
 alias ..='cd ..'
 alias .-='cd -'

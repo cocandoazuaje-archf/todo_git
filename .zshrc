@@ -1,4 +1,3 @@
-
 #!/usr/bin/env zsh
 # =========================================================
 # CONFIGURACIÓN: ENTORNO GLOBAL ZSH

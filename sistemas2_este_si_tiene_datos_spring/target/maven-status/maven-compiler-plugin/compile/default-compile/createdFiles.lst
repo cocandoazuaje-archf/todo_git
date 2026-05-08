@@ -1,6 +1,0 @@
-com/ejemplo/miapp/entity/Usuario.class
-com/ejemplo/miapp/service/UsuarioServiceImpl.class
-com/ejemplo/miapp/MiAppApplication.class
-com/ejemplo/miapp/service/UsuarioService.class
-com/ejemplo/miapp/controller/UsuarioController.class
-com/ejemplo/miapp/repository/UsuarioRepository.class

@@ -9,7 +9,6 @@
 #              Terraform, Vagrant y utilidades varias.
 # ============================================================
 
-
 # ===============================
 # Configuración de JAVA
 # ===============================
@@ -20,10 +19,8 @@ export OUTPUT_PATH="./archivo.txt"
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-
 source ~/.zxfunction
-source ~/.zxalias      # Limpiar pantalla
-
+source ~/.zxalias # Limpiar pantalla
 
 #!/usr/bin/env zsh
 # ============================================================
@@ -57,7 +54,7 @@ export PROMPT='%F{green}%n@%m%f %F{blue}%~%f %# '
 # titulo1: Configuración de colores
 # -------------------------------
 autoload -U colors && colors
-export LSCOLORS=GxFxCxDxBxegedabagaced  # Colores para ls -G
+export LSCOLORS=GxFxCxDxBxegedabagaced # Colores para ls -G
 
 # -------------------------------
 # titulo1: Cargar otras configuraciones si existen
@@ -65,17 +62,13 @@ export LSCOLORS=GxFxCxDxBxegedabagaced  # Colores para ls -G
 [ -f ~/.zxaliases ] && source ~/.aliases
 [ -f ~/.zxfunctions ] && source ~/.functions
 
-
 # eval "$(oh-my-posh init zsh --config ~/.poshthemes/jandedobbeleer.omp.json)"
 eval "$(oh-my-posh init zsh --config capr4n)"
-
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-
 eval "$(/opt/homebrew/bin/brew shellenv)"
-
 
 #export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
 #export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
@@ -83,11 +76,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export EDITOR="code -w"
 export VISUAL="code -w"
 
-
-
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"

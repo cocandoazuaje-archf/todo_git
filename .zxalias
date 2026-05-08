@@ -150,6 +150,8 @@ alias r='cd / && ls -lah && pwd'
 # Subir un directorio
 alias ..='cd .. && ll && pwd'
 
+alias ....='cd ../; cd ../ && ls -lah &&pwd'
+
 # Volver al directorio anterior
 alias .-='cd - && ll && pwd'
 
@@ -249,6 +251,8 @@ alias sustituto='open "x-apple.systempreferences:com.apple.Keyboard-Settings.ext
 # Abrir notificaciones
 alias notifica='open "x-apple.systempreferences:com.apple.Notifications-Settings.extension"'
 
+alias pass='open "x-apple.systempreferences:com.apple.Passwords-Settings.extension"'
+
 # Copiar al portapapeles
 alias xporta='pbcopy'
 
@@ -283,10 +287,10 @@ alias xh='xh12&&xh12gra'
 alias xba='figlet'
 
 # Filtrar causas
-alias xcau1='grep -iE "cause"'
+alias xg1='grep -iE "cause"'
 
 # Filtrar errores comunes
-alias xcau4='grep -iE "cause|exception|failure|error|package"'
+alias xg4='grep -iE "cause|exception|failure|error|package"'
 
 # Abrir log temporal en Sublime Text
 alias l='subl /tmp/x.log'
@@ -304,3 +308,6 @@ alias gitbn='git -m'
 alias gitrn='git remote set-url origin'
 alias xsintax='bash -n'
 alias xformathtml='prettier --write  '
+alias g='grep'
+alias xgittodo='gits&&git add .&&git commit -m"$1"&&git push'
+
