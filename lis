@@ -1,0 +1,7 @@
+cd referidos2intento
+git add .
+git commit -m "Actualización submódulo"
+git push
+cd ..
+git add referidos2intento
+git commit -m "Actualizar referencia submódulo"
