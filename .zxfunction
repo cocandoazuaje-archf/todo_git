@@ -3062,3 +3062,31 @@ function xmvnall {
     echo " **** Proceso finalizado correctamente"
     echo "========================================"
 }
+
+
+function xcp () {
+    local ORIGEN="$1"
+    local DESTINO="$2"
+
+    # Verifica que se pasen ambos parámetros
+    if [ -z "$ORIGEN" ] || [ -z "$DESTINO" ]; then
+        echo "Error: Faltan parámetros."
+        echo "Uso: xcp /ruta/origen/ /ruta/destino/"
+        return 1
+    fi
+
+    # Ejecuta el comando rsync
+    rsync -ah --progress "$ORIGEN" "$DESTINO"
+
+    # Verifica si el comando terminó con éxito
+    if [ $? -eq 0 ]; then
+        echo "Sincronización completada con éxito."
+        return 0
+    else
+        echo "Hubo un error durante la sincronización."
+        return 1
+    fi
+}
+
+# Ejemplo de cómo invocarla:
+xcp "/ruta/al/origen/" "/ruta/al/destino/"
